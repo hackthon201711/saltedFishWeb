@@ -6,6 +6,6 @@
 <title>Demo</title>
 </head>
 <body>
-	<h1>hello ${msg}, this is demo for saltedFishWeb!</h1>
+	<h1>hello ${msg}, this is demo for saltedFishWeb! test</h1>
 </body>
 </html>
