@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.ibm.hackthon.dao.ItemMapper">
+  <resultMap id="BaseResultMap" type="cn.com.ibm.hackthon.po.Item">
+    <result column="item_id" jdbcType="INTEGER" property="itemId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="Item_type_id" jdbcType="INTEGER" property="itemTypeId" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="pre_price" jdbcType="DECIMAL" property="prePrice" />
+    <result column="cur_price" jdbcType="DECIMAL" property="curPrice" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_change_time" jdbcType="TIMESTAMP" property="lastChangeTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="location_id" jdbcType="INTEGER" property="locationId" />
+    <result column="field" jdbcType="VARCHAR" property="field" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.com.ibm.hackthon.po.Item">
+    <result column="item_desc" jdbcType="LONGVARCHAR" property="itemDesc" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    item_desc
+  </sql>
+  <insert id="insert" parameterType="cn.com.ibm.hackthon.po.Item">
+    insert into t_item (item_id, user_id, Item_type_id, 
+      item_name, pre_price, cur_price, 
+      create_time, last_change_time, status, 
+      location_id, field, item_desc
+      )
+    values (#{itemId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{itemTypeId,jdbcType=INTEGER}, 
+      #{itemName,jdbcType=VARCHAR}, #{prePrice,jdbcType=DECIMAL}, #{curPrice,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastChangeTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{locationId,jdbcType=INTEGER}, #{field,jdbcType=VARCHAR}, #{itemDesc,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.ibm.hackthon.po.Item">
+    insert into t_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="itemTypeId != null">
+        Item_type_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="prePrice != null">
+        pre_price,
+      </if>
+      <if test="curPrice != null">
+        cur_price,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastChangeTime != null">
+        last_change_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="locationId != null">
+        location_id,
+      </if>
+      <if test="field != null">
+        field,
+      </if>
+      <if test="itemDesc != null">
+        item_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="itemTypeId != null">
+        #{itemTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="prePrice != null">
+        #{prePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="curPrice != null">
+        #{curPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastChangeTime != null">
+        #{lastChangeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="locationId != null">
+        #{locationId,jdbcType=INTEGER},
+      </if>
+      <if test="field != null">
+        #{field,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDesc != null">
+        #{itemDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

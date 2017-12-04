@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.ibm.hackthon.dao.PictureMapper">
+  <resultMap id="BaseResultMap" type="cn.com.ibm.hackthon.po.Picture">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="pic_path" jdbcType="VARCHAR" property="picPath" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="change_time" jdbcType="TIMESTAMP" property="changeTime" />
+    <result column="picuture_type" jdbcType="INTEGER" property="picutureType" />
+    <result column="item_id" jdbcType="INTEGER" property="itemId" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.com.ibm.hackthon.po.Picture">
+    insert into t_picuture (id, pic_path, create_time, 
+      change_time, picuture_type, item_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{picPath,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{changeTime,jdbcType=TIMESTAMP}, #{picutureType,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.ibm.hackthon.po.Picture">
+    insert into t_picuture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="picPath != null">
+        pic_path,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="changeTime != null">
+        change_time,
+      </if>
+      <if test="picutureType != null">
+        picuture_type,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="picPath != null">
+        #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeTime != null">
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picutureType != null">
+        #{picutureType,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
