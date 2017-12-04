@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.ibm.hackthon.dao.PicProfileMapper">
+  <resultMap id="BaseResultMap" type="cn.com.ibm.hackthon.po.PicProfile">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="pic_path" jdbcType="VARCHAR" property="picPath" />
+    <result column="picuture_type" jdbcType="INTEGER" property="picutureType" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.com.ibm.hackthon.po.PicProfile">
+    insert into t_pic_profile (id, pic_path, picuture_type
+      )
+    values (#{id,jdbcType=INTEGER}, #{picPath,jdbcType=VARCHAR}, #{picutureType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.ibm.hackthon.po.PicProfile">
+    insert into t_pic_profile
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="picPath != null">
+        pic_path,
+      </if>
+      <if test="picutureType != null">
+        picuture_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="picPath != null">
+        #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="picutureType != null">
+        #{picutureType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

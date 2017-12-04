@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.ibm.hackthon.dao.ItemTypeMapper">
+  <resultMap id="BaseResultMap" type="cn.com.ibm.hackthon.po.itemType">
+    <result column="item_type_id" jdbcType="INTEGER" property="itemTypeId" />
+    <result column="Item_type_name" jdbcType="VARCHAR" property="itemTypeName" />
+    <result column="field1" jdbcType="VARCHAR" property="field1" />
+    <result column="field2" jdbcType="VARCHAR" property="field2" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.com.ibm.hackthon.po.itemType">
+    insert into t_item_type (item_type_id, Item_type_name, field1, 
+      field2)
+    values (#{itemTypeId,jdbcType=INTEGER}, #{itemTypeName,jdbcType=VARCHAR}, #{field1,jdbcType=VARCHAR}, 
+      #{field2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.ibm.hackthon.po.itemType">
+    insert into t_item_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemTypeId != null">
+        item_type_id,
+      </if>
+      <if test="itemTypeName != null">
+        Item_type_name,
+      </if>
+      <if test="field1 != null">
+        field1,
+      </if>
+      <if test="field2 != null">
+        field2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemTypeId != null">
+        #{itemTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="itemTypeName != null">
+        #{itemTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="field1 != null">
+        #{field1,jdbcType=VARCHAR},
+      </if>
+      <if test="field2 != null">
+        #{field2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

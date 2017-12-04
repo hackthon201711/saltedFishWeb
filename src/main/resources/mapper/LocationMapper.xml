@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.ibm.hackthon.dao.LocationMapper">
+  <resultMap id="BaseResultMap" type="cn.com.ibm.hackthon.po.Location">
+    <result column="location_id" jdbcType="INTEGER" property="locationId" />
+    <result column="location_name" jdbcType="VARCHAR" property="locationName" />
+    <result column="field" jdbcType="VARCHAR" property="field" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.com.ibm.hackthon.po.Location">
+    insert into t_location (location_id, location_name, field
+      )
+    values (#{locationId,jdbcType=INTEGER}, #{locationName,jdbcType=VARCHAR}, #{field,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.ibm.hackthon.po.Location">
+    insert into t_location
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="locationId != null">
+        location_id,
+      </if>
+      <if test="locationName != null">
+        location_name,
+      </if>
+      <if test="field != null">
+        field,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="locationId != null">
+        #{locationId,jdbcType=INTEGER},
+      </if>
+      <if test="locationName != null">
+        #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="field != null">
+        #{field,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
