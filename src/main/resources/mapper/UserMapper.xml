@@ -5,7 +5,8 @@
     <result column="userid" jdbcType="INTEGER" property="userid" />
     <result column="pwd" jdbcType="VARCHAR" property="pwd" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="loginname" jdbcType="VARCHAR" property="name" />
+    <result column="username" jdbcType="VARCHAR" property="name" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_change_time" jdbcType="TIMESTAMP" property="lastChangeTime" />
@@ -72,23 +73,18 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    userid, pwd, phone, name, email, create_time, last_change_time, gender, location_id, 
+    userid, pwd, phone, username,loginname, email, create_time, last_change_time, gender, location_id,
     profile_pic_id
   </sql>
-  <select id="selectByExample" parameterType="cn.com.ibm.hackthon.po.UserExample" resultMap="BaseResultMap">
+  <select id="getUserByName" parameterType="String" resultMap="BaseResultMap">
     select
-    <if test="distinct">
-      distinct
-    </if>
-    'true' as QUERYID,
     <include refid="Base_Column_List" />
+    from t_user where loginname=#{loginname}
+  </select>
+
+  <select id="countAllUser" resultType="int">
+    select count(*)
     from t_user
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
   </select>
   <delete id="deleteByExample" parameterType="cn.com.ibm.hackthon.po.UserExample">
     delete from t_user

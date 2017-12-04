@@ -9,7 +9,11 @@ public class User {
 
     private String phone;
 
-    private String name;
+    private String loginname;
+
+    private String username;
+
+
 
     private String email;
 
@@ -47,12 +51,20 @@ public class User {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getLoginname() {
+        return loginname;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setLoginname(String loginname) {
+        this.loginname = loginname;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
