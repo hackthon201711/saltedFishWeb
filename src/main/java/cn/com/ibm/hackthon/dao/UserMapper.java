@@ -27,4 +27,6 @@ public interface UserMapper {
     public int countAllUser();
 
     public User getUserByName(String name);
+
+    int generateNewUser(User user);
 }

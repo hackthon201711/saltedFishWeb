@@ -13,7 +13,7 @@
     values (#{itemTypeId,jdbcType=INTEGER}, #{itemTypeName,jdbcType=VARCHAR}, #{field1,jdbcType=VARCHAR}, 
       #{field2,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.com.ibm.hackthon.po.itemType">
+  <insert id="insertItemType" parameterType="cn.com.ibm.hackthon.po.itemType">
     insert into t_item_type
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="itemTypeId != null">

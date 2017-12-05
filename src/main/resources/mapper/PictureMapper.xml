@@ -9,11 +9,11 @@
     <result column="picuture_type" jdbcType="INTEGER" property="picutureType" />
     <result column="item_id" jdbcType="INTEGER" property="itemId" />
   </resultMap>
-  <insert id="insert" parameterType="cn.com.ibm.hackthon.po.Picture">
-    insert into t_picuture (id, pic_path, create_time, 
+  <insert id="insertPicture" parameterType="cn.com.ibm.hackthon.po.Picture" useGeneratedKeys="true" keyProperty="id">
+    insert into t_picuture (pic_path, create_time,
       change_time, picuture_type, item_id
       )
-    values (#{id,jdbcType=INTEGER}, #{picPath,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{picPath,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
       #{changeTime,jdbcType=TIMESTAMP}, #{picutureType,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}
       )
   </insert>

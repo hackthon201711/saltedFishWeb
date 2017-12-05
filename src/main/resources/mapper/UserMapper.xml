@@ -92,13 +92,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.com.ibm.hackthon.po.User">
-    insert into t_user (userid, pwd, phone, 
-      name, email, create_time, 
+  <insert id="generateNewUser" parameterType="cn.com.ibm.hackthon.po.User" useGeneratedKeys="true" keyProperty="userid">
+    insert into t_user (pwd, phone,
+      loginname,username, email, create_time,
       last_change_time, gender, location_id, 
       profile_pic_id)
-    values (#{userid,jdbcType=INTEGER}, #{pwd,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{pwd,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+      #{loginname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
       #{lastChangeTime,jdbcType=TIMESTAMP}, #{gender,jdbcType=INTEGER}, #{locationId,jdbcType=INTEGER}, 
       #{profilePicId,jdbcType=INTEGER})
   </insert>

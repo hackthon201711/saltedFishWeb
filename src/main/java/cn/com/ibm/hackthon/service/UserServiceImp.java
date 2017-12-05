@@ -19,4 +19,9 @@ public class UserServiceImp implements UserService {
     public int countAllUser() {
         return userDAO.countAllUser();
     }
+
+    @Override
+    public int createNewUser(User user) {
+        return userDAO.generateNewUser(user);
+    }
 }

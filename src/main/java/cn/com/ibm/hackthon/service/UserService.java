@@ -9,4 +9,6 @@ public interface UserService {
     User selectUserByName(String loginname);
 
     int countAllUser();
+
+    int createNewUser(User user);
 }
