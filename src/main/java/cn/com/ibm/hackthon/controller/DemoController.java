@@ -1,6 +1,7 @@
 package cn.com.ibm.hackthon.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -26,7 +27,8 @@ public class DemoController {
 	DemoControllerHelper demoHelper;
 	
 	@RequestMapping(value="/hello",method=RequestMethod.GET)
-	public String sayHello(Model model) {
+	public String sayHello(Model model,HttpServletRequest request) {
+		logger.info(request.getServletContext().getRealPath("test"));
 		logger.info(demoHelper.sayHello());
 		model.addAttribute("msg", "guest");
 		return "demo";
