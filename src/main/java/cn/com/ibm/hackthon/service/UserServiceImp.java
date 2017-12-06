@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
 public class UserServiceImp implements UserService {
     @Autowired
     private UserMapper userDAO;
-    @Override
+
     public User selectUserByName(String loginname) {
         return userDAO.getUserByName(loginname);
     }
 
-    @Override
+
     public int countAllUser() {
         return userDAO.countAllUser();
     }
 
-    @Override
+
     public int createNewUser(User user) {
         return userDAO.generateNewUser(user);
     }

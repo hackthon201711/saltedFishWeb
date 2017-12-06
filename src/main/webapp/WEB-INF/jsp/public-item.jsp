@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <jsp:include page="include/Header-include.jsp"></jsp:include>
@@ -34,27 +34,19 @@
                 <div class="form-group">
                   <label class="col-md-2 control-label">商品分类 <span class="require">*</span></label>
                   <div class="col-md-8">
-                    <select class="form-control">
-					  <option>---请选择---</option>
-                      <option>电器</option>
-                      <option>母婴</option>
-                      <option>其他</option>
 
-                    </select>
+
                   </div>
                 </div>
 				
 			    <div class="form-group">
                   <label class="col-md-2 control-label">发布地区 <span class="require">*</span></label>
                   <div class="col-md-8">
-                    <select class="form-control">
-					  <option>---请选择---</option>
-                      <option>成都</option>
-                      <option>大连</option>
-                      <option>武汉</option>
-					  <option>上海</option>
-
-                    </select>
+                  <select name="locationid" id="locationid" style="width: 95%">
+                            <c:forEach items="${LocationList}" var="var">
+                                <option value="${var.locationId}">"${var.locationName}"</option>
+                            </c:forEach>
+                     </select>
                   </div>
                 </div>
 				

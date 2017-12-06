@@ -1,9 +1,10 @@
 package cn.com.ibm.hackthon.dao;
 
-import cn.com.ibm.hackthon.po.itemType;
+
+import java.util.List;
 
 public interface ItemTypeMapper {
-    int insert(itemType record);
+    //int insert(itemType record);
 
-    int insertSelective(itemType record);
+    List getAllItemType();
 }

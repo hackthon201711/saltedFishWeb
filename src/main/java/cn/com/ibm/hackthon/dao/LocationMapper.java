@@ -2,8 +2,10 @@ package cn.com.ibm.hackthon.dao;
 
 import cn.com.ibm.hackthon.po.Location;
 
-public interface LocationMapper {
-    int insert(Location record);
+import java.util.List;
+import java.util.Map;
 
-    int insertSelective(Location record);
+public interface LocationMapper {
+    List getAllLocation();
+
 }

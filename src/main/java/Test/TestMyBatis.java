@@ -3,6 +3,7 @@ package Test;
 
 import cn.com.ibm.hackthon.po.Picture;
 import cn.com.ibm.hackthon.po.User;
+import cn.com.ibm.hackthon.service.LocationService;
 import cn.com.ibm.hackthon.service.PictureService;
 import cn.com.ibm.hackthon.service.UserService;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @ContextConfiguration(locations = { "classpath:/spring-mybatis.xml" })
 
@@ -24,6 +26,8 @@ public class TestMyBatis extends AbstractJUnit4SpringContextTests {
     private UserService userService;
     @Autowired
     private PictureService pictureService;
+    @Autowired
+    private LocationService locationService;
 //    @Before
 //    public void init(){
 //        context=new ClassPathXmlApplicationContext("/applicationContext.xml");
@@ -61,7 +65,7 @@ public class TestMyBatis extends AbstractJUnit4SpringContextTests {
         System.out.println("number====="+id);
     }
 
-    @Test
+
     public void testAddNewPicturePath(){
         Picture picture=new Picture();
         picture.setItemId(1);
@@ -70,5 +74,12 @@ public class TestMyBatis extends AbstractJUnit4SpringContextTests {
         picture.setCreateTime(new Date());
         picture.setChangeTime(new Date());
         int id=pictureService.generateNewPicturePath(picture);
+    }
+
+    @Test
+    public  void testLocation(){
+        List list=locationService.getLocation();
+
+        System.out.println("list=================="+list);
     }
 }

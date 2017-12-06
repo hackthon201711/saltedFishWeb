@@ -1,6 +1,6 @@
 package cn.com.ibm.hackthon.po;
 
-public class itemType {
+public class ItemType {
     private Integer itemTypeId;
 
     private String itemTypeName;

@@ -12,29 +12,14 @@
     values (#{locationId,jdbcType=INTEGER}, #{locationName,jdbcType=VARCHAR}, #{field,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.com.ibm.hackthon.po.Location">
-    insert into t_location
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="locationId != null">
-        location_id,
-      </if>
-      <if test="locationName != null">
-        location_name,
-      </if>
-      <if test="field != null">
-        field,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="locationId != null">
-        #{locationId,jdbcType=INTEGER},
-      </if>
-      <if test="locationName != null">
-        #{locationName,jdbcType=VARCHAR},
-      </if>
-      <if test="field != null">
-        #{field,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+
+  <sql id="Base_Column_List">
+    location_id, location_name, field
+  </sql>
+
+  <select id="getAllLocation" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_location
+  </select>
 </mapper>

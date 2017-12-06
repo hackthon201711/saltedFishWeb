@@ -56,10 +56,18 @@ public class ItemAddControllerHelper {
     }
 
 
-
+    /**
+     *
+     * @param picture
+     * @return
+     * @throws Exception
+     */
     public int AddNewPicturePath(Picture picture)throws Exception{
         int id=pictureService.generateNewPicturePath(picture);
         return id;
     }
+
+
+
 
 }

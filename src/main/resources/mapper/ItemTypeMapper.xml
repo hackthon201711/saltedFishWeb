@@ -13,35 +13,9 @@
     values (#{itemTypeId,jdbcType=INTEGER}, #{itemTypeName,jdbcType=VARCHAR}, #{field1,jdbcType=VARCHAR}, 
       #{field2,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertItemType" parameterType="cn.com.ibm.hackthon.po.itemType">
-    insert into t_item_type
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="itemTypeId != null">
-        item_type_id,
-      </if>
-      <if test="itemTypeName != null">
-        Item_type_name,
-      </if>
-      <if test="field1 != null">
-        field1,
-      </if>
-      <if test="field2 != null">
-        field2,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="itemTypeId != null">
-        #{itemTypeId,jdbcType=INTEGER},
-      </if>
-      <if test="itemTypeName != null">
-        #{itemTypeName,jdbcType=VARCHAR},
-      </if>
-      <if test="field1 != null">
-        #{field1,jdbcType=VARCHAR},
-      </if>
-      <if test="field2 != null">
-        #{field2,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+  <select id="getAllItemType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_item_type
+  </select>
 </mapper>

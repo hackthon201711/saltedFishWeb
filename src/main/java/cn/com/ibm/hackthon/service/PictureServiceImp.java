@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class PictureServiceImp implements PictureService {
     @Autowired
     private PictureMapper pictureMapper;
-    @Override
+
     public int generateNewPicturePath(Picture picture) {
         return  pictureMapper.insertPicture(picture);
     }
