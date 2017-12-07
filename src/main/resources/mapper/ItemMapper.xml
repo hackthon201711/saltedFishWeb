@@ -20,18 +20,23 @@
   <sql id="Blob_Column_List">
     item_desc
   </sql>
-  <insert id="insert" parameterType="cn.com.ibm.hackthon.po.Item">
-    insert into t_item (item_id, user_id, Item_type_id, 
+  <insert id="insertItem" parameterType="cn.com.ibm.hackthon.po.Item" useGeneratedKeys="true" keyProperty="item_id">
+    insert into t_item ( user_id, Item_type_id,
       item_name, pre_price, cur_price, 
       create_time, last_change_time, status, 
       location_id, field, item_desc
       )
-    values (#{itemId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{itemTypeId,jdbcType=INTEGER}, 
+    values (#{userId,jdbcType=INTEGER}, #{itemTypeId,jdbcType=INTEGER}, 
       #{itemName,jdbcType=VARCHAR}, #{prePrice,jdbcType=DECIMAL}, #{curPrice,jdbcType=DECIMAL}, 
       #{createTime,jdbcType=TIMESTAMP}, #{lastChangeTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
       #{locationId,jdbcType=INTEGER}, #{field,jdbcType=VARCHAR}, #{itemDesc,jdbcType=LONGVARCHAR}
       )
   </insert>
+  
+  <delete id="deleteItemById" parameterType="int">
+    delete from t_item where item
+
+  </delete>
   <insert id="insertSelective" parameterType="cn.com.ibm.hackthon.po.Item">
     insert into t_item
     <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.ibm.hackthon.dao.ItemTypeMapper">
-  <resultMap id="BaseResultMap" type="cn.com.ibm.hackthon.po.itemType">
+  <resultMap id="BaseResultMap" type="cn.com.ibm.hackthon.po.ItemType">
     <result column="item_type_id" jdbcType="INTEGER" property="itemTypeId" />
     <result column="Item_type_name" jdbcType="VARCHAR" property="itemTypeName" />
     <result column="field1" jdbcType="VARCHAR" property="field1" />
     <result column="field2" jdbcType="VARCHAR" property="field2" />
   </resultMap>
-  <insert id="insert" parameterType="cn.com.ibm.hackthon.po.itemType">
+  <insert id="insert" parameterType="cn.com.ibm.hackthon.po.ItemType">
     insert into t_item_type (item_type_id, Item_type_name, field1, 
       field2)
     values (#{itemTypeId,jdbcType=INTEGER}, #{itemTypeName,jdbcType=VARCHAR}, #{field1,jdbcType=VARCHAR}, 
       #{field2,jdbcType=VARCHAR})
   </insert>
+  <sql id="Base_Column_List">
+    item_type_id,Item_type_name,field1,field2
+  </sql>
+
   <select id="getAllItemType" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

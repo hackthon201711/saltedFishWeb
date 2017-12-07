@@ -3,6 +3,7 @@ package cn.com.ibm.hackthon.controller;
 
 import cn.com.ibm.hackthon.controller.helper.ItemAddControllerHelper;
 
+import cn.com.ibm.hackthon.po.Item;
 import cn.com.ibm.hackthon.po.Location;
 import cn.com.ibm.hackthon.po.Picture;
 import cn.com.ibm.hackthon.service.LocationService;
@@ -19,6 +20,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.peer.SystemTrayPeer;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -32,8 +34,7 @@ public class ItemAddController {
     @Resource
     ItemAddControllerHelper pictureUploadHelper;
 
-    @Autowired
-    private LocationService locationService;
+
 
 
     @ResponseBody
@@ -55,7 +56,12 @@ public class ItemAddController {
                     //测试代码
                     Picture picture = new Picture();
                     picture.setItemId(1);
-                    picture.setPicutureType(0);
+                    if (i==0){
+                        picture.setPicutureType(0);
+                    }else{
+                        picture.setPicutureType(1);
+                    }
+
                     picture.setPicPath(path);
                     picture.setCreateTime(new Date());
                     picture.setChangeTime(new Date());
@@ -80,22 +86,38 @@ public class ItemAddController {
 
     @RequestMapping(value="/publicItem",method=RequestMethod.GET)
     public ModelAndView publicItem(Model model) {
-        ModelAndView mav = new ModelAndView("public-item");
+        //display drop down list info
+        ModelAndView mav= pictureUploadHelper.GenerateListForAddItemPage("public-item");
 
-        List li= locationService.getLocation();
-
-        List outlist=new ArrayList<String>();
-        System.out.println("Get location info from database"+li.toString());
-        for(int i=0;i<li.size();i++){
-            Location lo= (Location) li.get(i);
-            outlist.add(lo.getLocationName());
-            System.out.println("=============="+outlist.toString());
-        }
-
-        mav.addObject("LocationList", li);
         return mav;
     }
 
+    @RequestMapping(value="/addnewItem",method=RequestMethod.POST)
+    public String AddItemTest(String preprice,String curprice,String itemName,String itemDec,int locationid,int typeid,@RequestParam("files") MultipartFile[] files, HttpServletRequest request, HttpServletResponse response, HttpSession session){
+       //insert item table first
+        System.out.println("itemName============"+itemName);
+        System.out.println("itemDec============"+itemDec);
+        System.out.println("locationid============"+locationid);
+        System.out.println("typeid============"+typeid);
+        if(files!=null&&files.length>0) {
+            System.out.println("files========not null");
+        }
+        Item newitem=new Item();
+        newitem.setCreateTime(new Date());
+        newitem.setLastChangeTime(new Date());
+        newitem.setCurPrice(Long.parseLong(curprice));
+        newitem.setPrePrice(Long.parseLong(preprice));
+        newitem.setItemDesc(itemDec);
+        newitem.setItemName(itemName);
+        newitem.setStatus(0);
+        newitem.setItemTypeId(typeid);
+        newitem.setLocationId(locationid);
+        System.out.println("load po finish");
+        //upload the picture
+
+
+        return "ok";
+    }
 
 
 }

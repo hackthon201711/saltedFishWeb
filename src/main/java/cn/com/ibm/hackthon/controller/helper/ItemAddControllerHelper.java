@@ -1,22 +1,31 @@
 package cn.com.ibm.hackthon.controller.helper;
 
 import cn.com.ibm.hackthon.po.Picture;
+import cn.com.ibm.hackthon.service.ItemTypeService;
+import cn.com.ibm.hackthon.service.LocationService;
 import cn.com.ibm.hackthon.service.PictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Component("pictureUploadHelper")
 public class ItemAddControllerHelper {
 
     @Autowired
     private PictureService pictureService;
+
+    @Autowired
+    private LocationService locationService;
+    @Autowired
+    private ItemTypeService itemTypeService;
 
 
     public String UploadfiletoServer(MultipartFile file, HttpServletRequest request, HttpServletResponse response, HttpSession session)throws IllegalStateException, IOException {
@@ -68,6 +77,14 @@ public class ItemAddControllerHelper {
     }
 
 
+    public ModelAndView GenerateListForAddItemPage(String s) {
+        ModelAndView mav = new ModelAndView(s);
 
+        List liloc= locationService.getLocation();
+        List liI_type=itemTypeService.getItemTypeList();
 
+        mav.addObject("LocationList", liloc);
+        mav.addObject("ItemTypeList", liI_type);
+        return mav;
+    }
 }

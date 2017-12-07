@@ -24,17 +24,21 @@
           <div class="col-md-9 col-sm-7">
             <h1>商品发布</h1>
             <div class="content-form-page">
-              <form role="form" class="form-horizontal form-without-legend">
+              <form role="form" class="form-horizontal form-without-legend" action="/file/addnewItem" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="first-name">商品名称 <span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="text" id="ID" class="form-control">
+                    <input type="text" id="itemName" name="itemName" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-md-2 control-label">商品分类 <span class="require">*</span></label>
                   <div class="col-md-8">
-
+                  <select name="typeid" id="typeid" style="width: 95%">
+                            <c:forEach items="${ItemTypeList}" var="var1">
+                                <option value="${var1.itemTypeId}">${var1.itemTypeName}</option>
+                            </c:forEach>
+                     </select>
 
                   </div>
                 </div>
@@ -44,7 +48,7 @@
                   <div class="col-md-8">
                   <select name="locationid" id="locationid" style="width: 95%">
                             <c:forEach items="${LocationList}" var="var">
-                                <option value="${var.locationId}">"${var.locationName}"</option>
+                                <option value="${var.locationId}">${var.locationName}</option>
                             </c:forEach>
                      </select>
                   </div>
@@ -53,22 +57,33 @@
 				<div class="form-group">
 					<label class="col-md-2 control-label">上传图片 </label>
 					<div class="col-md-8">
-						<input type="file" name="uploadFile" />
-						<input type="file" name="uploadFile" />
-						<input type="file" name="uploadFile" />
-						<input type="file" name="uploadFile" />
-						<input type="file" name="uploadFile" />
-						<input type="file" name="uploadFile" />
-						<input type="file" name="uploadFile" />
-						<input type="file" name="uploadFile" />
-						<input type="file" name="uploadFile" />
+						<input type="file" name="files" />
+						<input type="file" name="files" />
+						<input type="file" name="files" />
+						<input type="file" name="files" />
+						<input type="file" name="files" />
+						<input type="file" name="files" />
+						<input type="file" name="files" />
+						<input type="file" name="files" />
+						<input type="file" name="files" />
 
 					<div/>
 				<div/>
-				
+				 <div class="form-group">
+                  <label class="col-lg-2 control-label" >原始价格</label>
+                        <div class="col-lg-8">
+                             <input type="text" id="preprice" name="preprice" class="form-control">
+                        </div>
+                  <label class="col-lg-2 control-label" >现在价格</label>
+                       <div class="col-lg-8">
+                             <input type="text" id="curprice" name="curprice" class="form-control">
+                        </div>
+                  </div>
+
+
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="first-name">商品描述 </label>
-                  <textarea class="form-control" rows="8" id="review"></textarea>
+                  <textarea class="form-control" rows="8" id="dec" name="itemDec"></textarea>
                 </div>
 
 
