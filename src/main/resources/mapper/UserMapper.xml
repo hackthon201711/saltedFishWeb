@@ -5,8 +5,8 @@
     <result column="userid" jdbcType="INTEGER" property="userid" />
     <result column="pwd" jdbcType="VARCHAR" property="pwd" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="loginname" jdbcType="VARCHAR" property="name" />
-    <result column="username" jdbcType="VARCHAR" property="name" />
+    <result column="loginname" jdbcType="VARCHAR" property="loginname" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_change_time" jdbcType="TIMESTAMP" property="lastChangeTime" />

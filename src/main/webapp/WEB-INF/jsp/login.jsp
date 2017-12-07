@@ -18,44 +18,33 @@
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
-          <!-- BEGIN SIDEBAR -->
-          <div class="sidebar col-md-3 col-sm-5">
-            <ul class="list-group margin-bottom-25 sidebar-menu">
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Ladies</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Kids</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Accessories</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sports</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Brands</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Electronics</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Home &amp; Garden</a></li>
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Custom Link</a></li>
-            </ul>
-          </div>
-          <!-- END SIDEBAR -->
+          <jsp:include page="include/leftSide-include.jsp"></jsp:include>
 
           <!-- BEGIN CONTENT -->
+          
           <div class="col-md-9 col-sm-7">
+             <div>${msg} </div>
             <h1>用户登录</h1>
             <div class="content-form-page">
-              <form role="form" class="form-horizontal form-without-legend">
+              <form role="form" class="form-horizontal form-without-legend" action="login" method="post">
                 <div class="form-group">
-                  <label class="col-lg-2 control-label" for="first-name">ID <span class="require">*</span></label>
+                  <label class="col-lg-2 control-label" for="ID">账户名 <span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="text" id="ID" class="form-control">
+                    <input type="text" id="ID" name = "userID" class="form-control">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="col-lg-2 control-label" for="last-name">密码 <span class="require">*</span></label>
+                  <label class="col-lg-2 control-label" for="PSW">密码 <span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="password" id="PSW1" class="form-control">
+                    <input type="password" id="PSW" name = "passWord" class="form-control">
                   </div>
                 </div>
 			
                 <div class="row">
                   <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
                     <button class="btn btn-primary" type="submit">登录</button>
-					<a class="btn btn-primary" href="user-register.html">还未注册？注册</a> 
+					<a  href="${pageContext.request.contextPath}/reg/FWregister">还未注册？注册</a> 
 
                   </div>
                 </div>
