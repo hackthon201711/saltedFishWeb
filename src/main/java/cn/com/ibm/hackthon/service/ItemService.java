@@ -33,5 +33,14 @@ public interface ItemService {
 	void deleteItemById(int id)throws SQLException;
 
 
-	List<ItemDTO> selectItemListByUser(int userid)throws SQLException;
+	//根据用户查找自己的商品
+
+	/**
+	 *
+	 * @param userid
+	 * @param status 状态  0 为已经发布  1为已经关闭
+	 * @return
+	 * @throws SQLException
+	 */
+	List<ItemDTO> selectItemListByUser(int userid,int status)throws SQLException;
 }

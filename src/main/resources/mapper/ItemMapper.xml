@@ -153,9 +153,9 @@
   </select>
   -->
 
-  <select id="selectItemWithMainPicByUserId" parameterType="int" resultMap="ItemAndPicMap">
+  <select id="selectItemWithMainPicByUserId"  resultMap="ItemAndPicMap">
     select i.item_id,user_id,Item_type_id,item_name,item_desc,pre_price,cur_price,status,location_id,field,pic_path
-    from t_item i join t_picuture pi on i.item_id=pi.item_id where i.user_id=#{user_id,jdbcType=INTEGER} and pi.picuture_type=0
-    and i.status=0
+    from t_item i join t_picuture pi on i.item_id=pi.item_id where i.user_id=#{0} and pi.picuture_type=0
+    and i.status=#{1}
   </select>
 </mapper>
