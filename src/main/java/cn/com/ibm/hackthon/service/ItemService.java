@@ -31,4 +31,7 @@ public interface ItemService {
 	 */
 
 	void deleteItemById(int id)throws SQLException;
+
+
+	List<ItemDTO> selectItemListByUser(int userid)throws SQLException;
 }

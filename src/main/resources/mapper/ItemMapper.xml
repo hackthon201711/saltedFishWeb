@@ -131,6 +131,7 @@
     <result column="field" jdbcType="VARCHAR" property="field" />
     <result column="pic_path" jdbcType="VARCHAR" property="picPath" />
   </resultMap>
+  <!--
   <select id="selectItemList" parameterType="cn.com.ibm.hackthon.po.ItemExample" resultMap="ItemAndPicMap">
     select
     a.item_id, a.user_id, a.Item_type_id, a.item_name,item_desc, a.pre_price, a.cur_price, 
@@ -150,5 +151,11 @@
     	on c.item_id=d.item_id left join fish.t_picuture e on c.item_id=e.item_id 
     </select>
   </select>
-  
+  -->
+
+  <select id="selectItemWithMainPicByUserId" parameterType="int" resultMap="ItemAndPicMap">
+    select i.item_id,user_id,Item_type_id,item_name,item_desc,pre_price,cur_price,status,location_id,field,pic_path
+    from t_item i join t_picuture pi on i.item_id=pi.item_id where i.user_id=#{user_id,jdbcType=INTEGER} and pi.picuture_type=0
+    and i.status=0
+  </select>
 </mapper>
