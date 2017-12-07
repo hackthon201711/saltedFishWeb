@@ -116,5 +116,39 @@
       </if>
     </trim>
   </insert>
-
+  
+  
+  <resultMap id="ItemAndPicMap" type="cn.com.ibm.hackthon.dto.ItemDTO">
+    <result column="item_id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="Item_type_id" jdbcType="INTEGER" property="itemTypeId" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="item_desc" jdbcType="LONGVARCHAR" property="itemDesc" />
+    <result column="pre_price" jdbcType="DECIMAL" property="prePrice" />
+    <result column="cur_price" jdbcType="DECIMAL" property="currentPrice" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="location_id" jdbcType="INTEGER" property="locationId" />
+    <result column="field" jdbcType="VARCHAR" property="field" />
+    <result column="pic_path" jdbcType="VARCHAR" property="picPath" />
+  </resultMap>
+  <select id="selectItemList" parameterType="cn.com.ibm.hackthon.po.ItemExample" resultMap="ItemAndPicMap">
+    select
+    a.item_id, a.user_id, a.Item_type_id, a.item_name,item_desc, a.pre_price, a.cur_price, 
+    a.status, a.location_id, a.field,b.pic_path
+    from t_item a left join t_picuture b on a.item_id=b.item_id
+    <if test="orderByClause != null">
+      order by a.${orderByClause}
+    </if>
+    
+    <if test="limitAmount != null">
+      limit ${limitAmount}
+    </if>
+    
+    <select id="selectHotItemList" parameterType="cn.com.ibm.hackthon.po.ItemExample" resultMap="ItemAndPicMap">
+    	select c.*,e.pic_path from fish.t_item c left join 
+    	(select b.item_id,count(*) from fish.t_item a right join fish.t_interest b on a.item_id=b.item_id where a.status=1 group by a.item_id order by count(*) limit 5) d 
+    	on c.item_id=d.item_id left join fish.t_picuture e on c.item_id=e.item_id 
+    </select>
+  </select>
+  
 </mapper>

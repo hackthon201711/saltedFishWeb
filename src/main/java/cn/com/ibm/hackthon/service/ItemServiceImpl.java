@@ -3,32 +3,39 @@ package cn.com.ibm.hackthon.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import cn.com.ibm.hackthon.po.Item;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import ch.qos.logback.classic.Logger;
 import cn.com.ibm.hackthon.dao.ItemMapper;
 import cn.com.ibm.hackthon.dto.ItemDTO;
+import cn.com.ibm.hackthon.po.Item;
 import cn.com.ibm.hackthon.po.ItemExample;
 
 @Component
 public class ItemServiceImpl implements ItemService{
+
+	/**
+	 * logger
+	 */
+	org.slf4j.Logger logger = LoggerFactory.getLogger(ItemServiceImpl.class);
+			
 	@Autowired
 	private ItemMapper itemMapper; 
 	
 
 	public List<ItemDTO> getNewArrivalItemList() {
+		logger.info("getNewArrivalItemList() called ");
 		ItemExample ie = new ItemExample();
 		ie.setDistinct(false);
 		ie.setOrderByClause("create_time");
-//		return itemMapper.selectByExample(ie);
-		return null;
+		return itemMapper.selectItemList(ie);
 	}
 
 
 	public List<ItemDTO> getHotItemList() {
-		// TODO Auto-generated method stub
-		return null;
+		return itemMapper.selectHotItemList();
 	}
 
 	public int insertItem(Item item)throws SQLException {
@@ -38,5 +45,6 @@ public class ItemServiceImpl implements ItemService{
 	public void deleteItemById(int id)throws SQLException {
 		itemMapper.deleteItemById(id);
 	}
+
 
 }

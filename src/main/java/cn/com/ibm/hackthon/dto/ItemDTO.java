@@ -28,7 +28,7 @@ public class ItemDTO extends AbstractDTO{
 	/**
 	 * 商品所在地
 	 */
-	private String location;
+	private String locationId;
 	
 	/**
 	 * 图片路径
@@ -45,6 +45,15 @@ public class ItemDTO extends AbstractDTO{
 	 */
 	private String status;
 
+	/**
+	 * 物品类别id
+	 */
+	private String itemTypeId;
+	
+	/**
+	 * 物品扩展字段
+	 */
+	private String field;
 	public String getId() {
 		return id;
 	}
@@ -86,12 +95,12 @@ public class ItemDTO extends AbstractDTO{
 		this.currentPrice = currentPrice;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getLocationId() {
+		return locationId;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLocationId(String locationId) {
+		this.locationId = locationId;
 	}
 
 	public String getPicPath() {
@@ -116,6 +125,22 @@ public class ItemDTO extends AbstractDTO{
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getItemTypeId() {
+		return itemTypeId;
+	}
+
+	public void setItemTypeId(String itemTypeId) {
+		this.itemTypeId = itemTypeId;
+	}
+
+	public String getField() {
+		return field;
+	}
+
+	public void setField(String field) {
+		this.field = field;
 	}
 	
 	
