@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import java.awt.peer.SystemTrayPeer;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 
 @Controller
@@ -42,40 +43,9 @@ public class ItemAddController {
     //上传图片到服务器 并且往t_picture表里面插入一条记录记录path
     public String addNewItem(@RequestParam("files") MultipartFile[] files, HttpServletRequest request, HttpServletResponse response, HttpSession session)  {
         System.out.println("upload start");
-        String path = null;
-        if(files!=null&&files.length>0) {
-            for (int i = 0; i < files.length; i++) {
-                MultipartFile file = files[i];
-                try {
-                    path = pictureUploadHelper.UploadfiletoServer(file, request, response, session);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return "Upload picture to server feild";
-                }
-                if (path != null) {
-                    //测试代码
-                    Picture picture = new Picture();
-                    picture.setItemId(1);
-                    if (i==0){
-                        picture.setPicutureType(0);
-                    }else{
-                        picture.setPicutureType(1);
-                    }
 
-                    picture.setPicPath(path);
-                    picture.setCreateTime(new Date());
-                    picture.setChangeTime(new Date());
-                    try {
-                        int id = pictureUploadHelper.AddNewPicturePath(picture);
-                    } catch (Exception e) {
-                        //如果插入path失败 删除刚刚上传的图片
-                        File dfile = new File(path);
-                        dfile.delete();
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
+
+
 
         return "redirect:/list.html";
     }
@@ -93,16 +63,11 @@ public class ItemAddController {
     }
 
     @RequestMapping(value="/addnewItem",method=RequestMethod.POST)
-    public String AddItemTest(String preprice,String curprice,String itemName,String itemDec,int locationid,int typeid,@RequestParam("files") MultipartFile[] files, HttpServletRequest request, HttpServletResponse response, HttpSession session){
+    public String AddItemTest(String preprice,String curprice,String itemName,String itemDec,int locationid,int typeid,@RequestParam("files") MultipartFile[] files, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws SQLException {
        //insert item table first
-        System.out.println("itemName============"+itemName);
-        System.out.println("itemDec============"+itemDec);
-        System.out.println("locationid============"+locationid);
-        System.out.println("typeid============"+typeid);
-        if(files!=null&&files.length>0) {
-            System.out.println("files========not null");
-        }
+        String path = null;
         Item newitem=new Item();
+        newitem.setUserId(1);
         newitem.setCreateTime(new Date());
         newitem.setLastChangeTime(new Date());
         newitem.setCurPrice(Long.parseLong(curprice));
@@ -112,10 +77,47 @@ public class ItemAddController {
         newitem.setStatus(0);
         newitem.setItemTypeId(typeid);
         newitem.setLocationId(locationid);
-        System.out.println("load po finish");
+
+
+        int itemid=pictureUploadHelper.generateNewItem(newitem);
+
         //upload the picture
 
+        if(files!=null&&files.length>0&&itemid>=0) {
+            for (int i = 0; i < files.length; i++) {
+                MultipartFile file = files[i];
+                try {
+                    path = pictureUploadHelper.UploadfiletoServer(file, request, response, session);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return "Upload picture to server feild";
+                }
+                if (path != null) {
 
+                    Picture picture = new Picture();
+                    picture.setItemId(itemid);
+                    //默认第一个上传的为主图
+                    if (i==0){
+                        picture.setPicutureType(0);
+                    }else{
+                        picture.setPicutureType(1);
+                    }
+
+                    picture.setPicPath(path);
+                    picture.setCreateTime(new Date());
+                    picture.setChangeTime(new Date());
+                    try {
+                        int id = pictureUploadHelper.AddNewPicturePath(picture);
+                    } catch (Exception e) {
+                        //如果插入path失败 删除刚刚上传的图片 并且删除物品记录
+                        File dfile = new File(path);
+                        dfile.delete();
+                        pictureUploadHelper.deleteItemById(itemid);
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
         return "ok";
     }
 

@@ -1,6 +1,8 @@
 package cn.com.ibm.hackthon.controller.helper;
 
+import cn.com.ibm.hackthon.po.Item;
 import cn.com.ibm.hackthon.po.Picture;
+import cn.com.ibm.hackthon.service.ItemService;
 import cn.com.ibm.hackthon.service.ItemTypeService;
 import cn.com.ibm.hackthon.service.LocationService;
 import cn.com.ibm.hackthon.service.PictureService;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @Component("pictureUploadHelper")
@@ -26,6 +29,9 @@ public class ItemAddControllerHelper {
     private LocationService locationService;
     @Autowired
     private ItemTypeService itemTypeService;
+
+    @Autowired
+    private ItemService itemService;
 
 
     public String UploadfiletoServer(MultipartFile file, HttpServletRequest request, HttpServletResponse response, HttpSession session)throws IllegalStateException, IOException {
@@ -66,7 +72,7 @@ public class ItemAddControllerHelper {
 
 
     /**
-     *
+     * 往数据库插入图片存储地址
      * @param picture
      * @return
      * @throws Exception
@@ -76,7 +82,11 @@ public class ItemAddControllerHelper {
         return id;
     }
 
-
+    /**
+     * 页面获取地址和物品类型下拉列表
+     * @param s
+     * @return
+     */
     public ModelAndView GenerateListForAddItemPage(String s) {
         ModelAndView mav = new ModelAndView(s);
 
@@ -86,5 +96,13 @@ public class ItemAddControllerHelper {
         mav.addObject("LocationList", liloc);
         mav.addObject("ItemTypeList", liI_type);
         return mav;
+    }
+
+    public int generateNewItem(Item item)throws SQLException{
+        return itemService.insertItem(item);
+    }
+
+    public void deleteItemById(int id)throws SQLException{
+        itemService.deleteItemById(id);
     }
 }
