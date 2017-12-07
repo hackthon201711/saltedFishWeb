@@ -5,5 +5,7 @@ import cn.com.ibm.hackthon.po.Item;
 public interface ItemMapper {
     int insert(Item record);
 
-    int insertItemType(Item record);
+    int insertItem(Item record);
+
+    void deleteItemById(int itemid);
 }
