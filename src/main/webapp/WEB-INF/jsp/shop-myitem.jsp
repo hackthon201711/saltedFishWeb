@@ -47,22 +47,24 @@
                     <th class="goods-page-stock">商品状态</th>
                     <th class="goods-page-price" colspan="2">价格</th>
                   </tr>
-                  
-                 <c:forEach items="${users}" var="user">
-                  <tr>
+
+                 <c:forEach items="${myitems}" var="item">
+                   <tr>
                     <td class="goods-page-image">
-                      <a href="javascript:;"><img src="${pageContext.request.contextPath}/assets/pages/img/products/model3.jpg" alt="Berry Lace Dress"></a>
+                      <a href="javascript:;"><img src="${item.picPath}" alt=${item.itemName}></a>
                     </td>
                     <td class="goods-page-description">
-                      <h3><a href="javascript:;">Cool green dress with red bell</a></h3>
+                      <h3><a href="javascript:;">${item.itemName}</a></h3>
 
                       <em>More info is here</em>
                     </td>
                     <td class="goods-page-stock">
+                      <c:if test="${item.status}=0" >销售中...</c:if>
+                      <c:if test="${item.status}=1" >已关闭...</c:if>
                                                                  销售中...
                     </td>
                     <td class="goods-page-price">
-                      <strong><span>$</span>47.00</strong>
+                      <strong><span>¥</span>${item.currentPrice}</strong>
                     </td>
                     <td class="del-goods-col">
                       <a class="del-goods" href="javascript:;">&nbsp;</a>

@@ -37,42 +37,42 @@
           <div class="col-md-9 col-sm-7">
             <h1>用户注册</h1>
             <div class="content-form-page">
-              <form role="form" class="form-horizontal form-without-legend">
+              <form role="form" class="form-horizontal form-without-legend" action="register" method="post">
                 <div class="form-group">
-                  <label class="col-lg-2 control-label" for="first-name">ID <span class="require">*</span></label>
+                  <label class="col-lg-2 control-label" for="ID">账户名 <span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="text" id="ID" class="form-control">
+                    <input type="text" id="ID" name = "userID" class="form-control">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="col-lg-2 control-label" for="last-name">密码<span class="require">*</span></label>
+                  <label class="col-lg-2 control-label" for="PSW1">密码<span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="password" id="PSW1" class="form-control">
+                    <input type="password" id="PSW1" name = "psw1" class="form-control">
                   </div>
                 </div>
 				                <div class="form-group">
-                  <label class="col-lg-2 control-label" for="last-name">密码确认<span class="require">*</span></label>
+                  <label class="col-lg-2 control-label" for="PSW2">密码确认<span class="require">*</span></label>
                   <div class="col-lg-8">
-                    <input type="password" id="PSW2" class="form-control">
+                    <input type="password" id="PSW2" name = "psw2" class="form-control">
                   </div>
                 </div>
 			    <div class="form-group">
-                  <label class="col-lg-2 control-label" for="fax">昵称</label>
+                  <label class="col-lg-2 control-label" for="nickname">昵称</label>
                   <div class="col-lg-8">
-                    <input type="text" id="nickname" class="form-control">
+                    <input type="text" id="nickname" name = "nickName" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="email">E-Mail ></label>
                   <div class="col-lg-8">
-                    <input type="text" id="email" class="form-control">
+                    <input type="text" id="email" name = "email" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="telephone">Telephone </label>
                   <div class="col-lg-8">
-                    <input type="text" id="telephone" class="form-control">
+                    <input type="text" id="telephone" name = "telephone" class="form-control">
                   </div>
                 </div>
 
