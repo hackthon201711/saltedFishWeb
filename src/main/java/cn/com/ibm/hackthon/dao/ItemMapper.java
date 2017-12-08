@@ -16,4 +16,6 @@ public interface ItemMapper {
     List<ItemDTO> selectItemList(ItemExample example);
     
     List<ItemDTO> selectHotItemList();
+
+    List<ItemDTO> selectItemWithMainPicByUserId(int userid,int status);
 }
