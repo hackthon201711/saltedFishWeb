@@ -46,8 +46,12 @@ public class ItemServiceImpl implements ItemService{
 		itemMapper.deleteItemById(id);
 	}
 
-	public List<ItemDTO> selectItemListByUser(int userid,int status) throws SQLException {
-		return itemMapper.selectItemWithMainPicByUserId(userid,status);
+	public List<ItemDTO> selectItemListByUser(String username,int status,int pic_typ) throws SQLException {
+		return itemMapper.selectItemWithMainPicByUserId(username,status,pic_typ);
+	}
+
+	public List<Item> selectItemByUserName(String username, int itemid) throws SQLException {
+		return itemMapper.selectItemByUserName(username,itemid);
 	}
 
 

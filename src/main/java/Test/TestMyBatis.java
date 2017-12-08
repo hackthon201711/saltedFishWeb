@@ -84,7 +84,9 @@ public class TestMyBatis extends AbstractJUnit4SpringContextTests {
     public  void testListForItem(){
         List list= null;
         try {
-            list = itemService.selectItemListByUser(1,0);
+            //list = itemService.selectItemByUserName("STGIII",1);
+
+            list=pictureService.getPictureList(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }

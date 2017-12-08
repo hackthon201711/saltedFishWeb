@@ -5,6 +5,7 @@ import java.util.List;
 import cn.com.ibm.hackthon.dto.ItemDTO;
 import cn.com.ibm.hackthon.po.Item;
 import cn.com.ibm.hackthon.po.ItemExample;
+import org.apache.ibatis.annotations.Param;
 
 public interface ItemMapper {
 
@@ -17,5 +18,7 @@ public interface ItemMapper {
     
     List<ItemDTO> selectHotItemList();
 
-    List<ItemDTO> selectItemWithMainPicByUserId(int userid,int status);
+    List<ItemDTO> selectItemWithMainPicByUserId(String username,int status,@Param("picFlag") int pic_typ);
+
+    List<Item> selectItemByUserName(String username,int item_id);
 }

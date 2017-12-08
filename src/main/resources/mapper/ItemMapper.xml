@@ -1,171 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.ibm.hackthon.dao.ItemMapper">
-	<resultMap id="BaseResultMap" type="cn.com.ibm.hackthon.po.Item">
-		<result column="item_id" jdbcType="INTEGER" property="itemId" />
-		<result column="user_id" jdbcType="INTEGER" property="userId" />
-		<result column="Item_type_id" jdbcType="INTEGER" property="itemTypeId" />
-		<result column="item_name" jdbcType="VARCHAR" property="itemName" />
-		<result column="pre_price" jdbcType="DECIMAL" property="prePrice" />
-		<result column="cur_price" jdbcType="DECIMAL" property="curPrice" />
-		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-		<result column="last_change_time" jdbcType="TIMESTAMP"
-			property="lastChangeTime" />
-		<result column="status" jdbcType="INTEGER" property="status" />
-		<result column="location_id" jdbcType="INTEGER" property="locationId" />
-		<result column="field" jdbcType="VARCHAR" property="field" />
-	</resultMap>
-	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
-		type="cn.com.ibm.hackthon.po.Item">
-		<result column="item_desc" jdbcType="LONGVARCHAR" property="itemDesc" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		item_desc
-	</sql>
-	<insert id="insertItem" parameterType="cn.com.ibm.hackthon.po.Item"
-		useGeneratedKeys="true" keyProperty="item_id">
-		insert into t_item ( user_id, Item_type_id,
-		item_name, pre_price, cur_price,
-		create_time, last_change_time, status,
-		location_id, field, item_desc
-		)
-		values (#{userId,jdbcType=INTEGER}, #{itemTypeId,jdbcType=INTEGER},
-		#{itemName,jdbcType=VARCHAR}, #{prePrice,jdbcType=DECIMAL},
-		#{curPrice,jdbcType=DECIMAL},
-		#{createTime,jdbcType=TIMESTAMP}, #{lastChangeTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER},
-		#{locationId,jdbcType=INTEGER}, #{field,jdbcType=VARCHAR},
-		#{itemDesc,jdbcType=LONGVARCHAR}
-		)
-	</insert>
+  <resultMap id="BaseResultMap" type="cn.com.ibm.hackthon.po.Item">
+    <result column="item_id" jdbcType="INTEGER" property="itemId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="Item_type_id" jdbcType="INTEGER" property="itemTypeId" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="pre_price" jdbcType="DECIMAL" property="prePrice" />
+    <result column="cur_price" jdbcType="DECIMAL" property="curPrice" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_change_time" jdbcType="TIMESTAMP" property="lastChangeTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="location_id" jdbcType="INTEGER" property="locationId" />
+    <result column="field" jdbcType="VARCHAR" property="field" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.com.ibm.hackthon.po.Item">
+    <result column="item_desc" jdbcType="LONGVARCHAR" property="itemDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_desc,field,status,cur_price,pre_price,item_name,Item_type_id,item_id
+  </sql>
+  <insert id="insertItem" parameterType="cn.com.ibm.hackthon.po.Item" useGeneratedKeys="true" keyProperty="item_id">
+    insert into t_item ( user_id, Item_type_id,
+      item_name, pre_price, cur_price, 
+      create_time, last_change_time, status, 
+      location_id, field, item_desc
+      )
+    values (#{userId,jdbcType=INTEGER}, #{itemTypeId,jdbcType=INTEGER},
+      #{itemName,jdbcType=VARCHAR}, #{prePrice,jdbcType=DECIMAL}, #{curPrice,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastChangeTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{locationId,jdbcType=INTEGER}, #{field,jdbcType=VARCHAR}, #{itemDesc,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  
+  <delete id="deleteItemById" parameterType="int">
+    delete from t_item where item_id=#{item_id,jdbcType=INTEGER}
 
-	<delete id="deleteItemById" parameterType="int">
-		delete from t_item where item_id=#{item_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="cn.com.ibm.hackthon.po.Item">
+    insert into t_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="itemTypeId != null">
+        Item_type_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="prePrice != null">
+        pre_price,
+      </if>
+      <if test="curPrice != null">
+        cur_price,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastChangeTime != null">
+        last_change_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="locationId != null">
+        location_id,
+      </if>
+      <if test="field != null">
+        field,
+      </if>
+      <if test="itemDesc != null">
+        item_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="itemTypeId != null">
+        #{itemTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="prePrice != null">
+        #{prePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="curPrice != null">
+        #{curPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastChangeTime != null">
+        #{lastChangeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="locationId != null">
+        #{locationId,jdbcType=INTEGER},
+      </if>
+      <if test="field != null">
+        #{field,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDesc != null">
+        #{itemDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <resultMap id="ItemAndPicMap" type="cn.com.ibm.hackthon.dto.ItemDTO">
+    <result column="item_id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="Item_type_id" jdbcType="INTEGER" property="itemTypeId" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="item_desc" jdbcType="LONGVARCHAR" property="itemDesc" />
+    <result column="pre_price" jdbcType="DECIMAL" property="prePrice" />
+    <result column="cur_price" jdbcType="DECIMAL" property="currentPrice" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="location_id" jdbcType="INTEGER" property="locationId" />
+    <result column="field" jdbcType="VARCHAR" property="field" />
+    <result column="pic_path" jdbcType="VARCHAR" property="picPath" />
+  </resultMap>
+  <!--
+  <select id="selectItemList" parameterType="cn.com.ibm.hackthon.po.ItemExample" resultMap="ItemAndPicMap">
+    select
+    a.item_id, a.user_id, a.Item_type_id, a.item_name,item_desc, a.pre_price, a.cur_price, 
+    a.status, a.location_id, a.field,b.pic_path
+    from t_item a left join t_picuture b on a.item_id=b.item_id
+    <if test="orderByClause != null">
+      order by a.${orderByClause}
+    </if>
+    
+    <if test="limitAmount != null">
+      limit ${limitAmount}
+    </if>
+    
+    <select id="selectHotItemList" parameterType="cn.com.ibm.hackthon.po.ItemExample" resultMap="ItemAndPicMap">
+    	select c.*,e.pic_path from fish.t_item c left join 
+    	(select b.item_id,count(*) from fish.t_item a right join fish.t_interest b on a.item_id=b.item_id where a.status=1 group by a.item_id order by count(*) limit 5) d 
+    	on c.item_id=d.item_id left join fish.t_picuture e on c.item_id=e.item_id 
+    </select>
+  </select>
+-->
+  <select id="selectItemWithMainPicByUserId"  resultMap="ItemAndPicMap">
+    select i.item_id,user_id,Item_type_id,item_name,item_desc,pre_price,cur_price,i.status,u.location_id,field,pic_path
+    from fish.t_item i  join t_user u left join fish.t_picuture pi on u.userid=i.user_id and i.item_id=pi.item_id where u.username=#{0}
+    <if test="picFlag==0">and pi.picuture_type=0</if>
+    and i.status=#{1}
+  </select>
 
-	</delete>
-	<insert id="insertSelective" parameterType="cn.com.ibm.hackthon.po.Item">
-		insert into t_item
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="itemId != null">
-				item_id,
-			</if>
-			<if test="userId != null">
-				user_id,
-			</if>
-			<if test="itemTypeId != null">
-				Item_type_id,
-			</if>
-			<if test="itemName != null">
-				item_name,
-			</if>
-			<if test="prePrice != null">
-				pre_price,
-			</if>
-			<if test="curPrice != null">
-				cur_price,
-			</if>
-			<if test="createTime != null">
-				create_time,
-			</if>
-			<if test="lastChangeTime != null">
-				last_change_time,
-			</if>
-			<if test="status != null">
-				status,
-			</if>
-			<if test="locationId != null">
-				location_id,
-			</if>
-			<if test="field != null">
-				field,
-			</if>
-			<if test="itemDesc != null">
-				item_desc,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="itemId != null">
-				#{itemId,jdbcType=INTEGER},
-			</if>
-			<if test="userId != null">
-				#{userId,jdbcType=INTEGER},
-			</if>
-			<if test="itemTypeId != null">
-				#{itemTypeId,jdbcType=INTEGER},
-			</if>
-			<if test="itemName != null">
-				#{itemName,jdbcType=VARCHAR},
-			</if>
-			<if test="prePrice != null">
-				#{prePrice,jdbcType=DECIMAL},
-			</if>
-			<if test="curPrice != null">
-				#{curPrice,jdbcType=DECIMAL},
-			</if>
-			<if test="createTime != null">
-				#{createTime,jdbcType=TIMESTAMP},
-			</if>
-			<if test="lastChangeTime != null">
-				#{lastChangeTime,jdbcType=TIMESTAMP},
-			</if>
-			<if test="status != null">
-				#{status,jdbcType=INTEGER},
-			</if>
-			<if test="locationId != null">
-				#{locationId,jdbcType=INTEGER},
-			</if>
-			<if test="field != null">
-				#{field,jdbcType=VARCHAR},
-			</if>
-			<if test="itemDesc != null">
-				#{itemDesc,jdbcType=LONGVARCHAR},
-			</if>
-		</trim>
-	</insert>
 
-
-	<resultMap id="ItemAndPicMap" type="cn.com.ibm.hackthon.dto.ItemDTO">
-		<result column="item_id" jdbcType="INTEGER" property="id" />
-		<result column="user_id" jdbcType="INTEGER" property="userId" />
-		<result column="Item_type_id" jdbcType="INTEGER" property="itemTypeId" />
-		<result column="item_name" jdbcType="VARCHAR" property="itemName" />
-		<result column="item_desc" jdbcType="LONGVARCHAR" property="itemDesc" />
-		<result column="pre_price" jdbcType="DECIMAL" property="prePrice" />
-		<result column="cur_price" jdbcType="DECIMAL" property="currentPrice" />
-		<result column="status" jdbcType="INTEGER" property="status" />
-		<result column="location_id" jdbcType="INTEGER" property="locationId" />
-		<result column="field" jdbcType="VARCHAR" property="field" />
-		<result column="pic_path" jdbcType="VARCHAR" property="picPath" />
-	</resultMap>
-	<select id="selectItemList" parameterType="cn.com.ibm.hackthon.po.ItemExample"
-		resultMap="ItemAndPicMap">
-		select
-		a.item_id, a.user_id, a.Item_type_id, a.item_name,item_desc, a.pre_price,
-		a.cur_price,
-		a.status, a.location_id, a.field,b.pic_path
-		from t_item a left join t_picuture b on a.item_id=b.item_id
-		<if test="orderByClause != null">
-			order by a.${orderByClause}
-		</if>
-
-		<if test="limitAmount != null">
-			limit ${limitAmount}
-		</if>
-	</select>
-
-	<select id="selectHotItemList" parameterType="cn.com.ibm.hackthon.po.ItemExample"
-		resultMap="ItemAndPicMap">
-		select c.*,e.pic_path from fish.t_item c left join
-		(select b.item_id,count(*) from fish.t_item a right join fish.t_interest b on
-		a.item_id=b.item_id where a.status=1 group by a.item_id order by
-		count(*) limit 5) d
-		on c.item_id=d.item_id left join fish.t_picuture e on
-		c.item_id=e.item_id
-	</select>
-	<select id="selectItemWithMainPicByUserId" resultMap="ItemAndPicMap">
-		select
-		i.item_id,user_id,Item_type_id,item_name,item_desc,pre_price,cur_price,status,location_id,field,pic_path
-		from t_item i join t_picuture pi on i.item_id=pi.item_id where
-		i.user_id=#{0} and pi.picuture_type=0
-		and i.status=#{1}
-	</select>
+  <select id="selectItemByUserName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />, i.location_id,i.last_change_time,i.create_time
+    from t_item i join t_user u on u.userid=i.user_id where u.loginname=#{0} and i.item_id=#{1}
+  </select>
 </mapper>

@@ -7,6 +7,7 @@ import cn.com.ibm.hackthon.po.Item;
 import cn.com.ibm.hackthon.po.Location;
 import cn.com.ibm.hackthon.po.Picture;
 import cn.com.ibm.hackthon.service.LocationService;
+import cn.com.ibm.hackthon.util.Constant;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 
+/**
+ * 添加物品
+ */
 @Controller
 @RequestMapping("/file")
 public class ItemAddController {
@@ -37,21 +41,9 @@ public class ItemAddController {
 
 
 
-
-    @ResponseBody
-    @RequestMapping(value = "/pictureUpload")
-    //上传图片到服务器 并且往t_picture表里面插入一条记录记录path
-    public String addNewItem(@RequestParam("files") MultipartFile[] files, HttpServletRequest request, HttpServletResponse response, HttpSession session)  {
-        System.out.println("upload start");
-
-
-
-
-        return "redirect:/list.html";
-    }
-
     /**
-     * 显示地区信息
+     * 进入添加物品页面
+     * 显示地区信息和物品类别
      */
 
     @RequestMapping(value="/publicItem",method=RequestMethod.GET)
@@ -62,10 +54,26 @@ public class ItemAddController {
         return mav;
     }
 
+
+    /**
+     * 点击发布商品之后的跳转方法
+     * @param preprice
+     * @param curprice
+     * @param itemName
+     * @param itemDec
+     * @param locationid
+     * @param typeid
+     * @param files
+     * @param request
+     * @param response
+     * @param session
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value="/addnewItem",method=RequestMethod.POST)
-    public String AddItemTest(String preprice,String curprice,String itemName,String itemDec,int locationid,int typeid,@RequestParam("files") MultipartFile[] files, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws SQLException {
-       //insert item table first
-        String path = null;
+    public String AddItemTest(String preprice,String curprice,String itemName,String itemDec,Integer locationid,Integer typeid,@RequestParam("files") MultipartFile[] files, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws SQLException {
+
+        String fileName = null;
         Item newitem=new Item();
         newitem.setUserId(1);
         newitem.setCreateTime(new Date());
@@ -77,7 +85,7 @@ public class ItemAddController {
         newitem.setStatus(0);
         newitem.setItemTypeId(typeid);
         newitem.setLocationId(locationid);
-
+        System.out.println("locationid====="+locationid);
 
         int itemid=pictureUploadHelper.generateNewItem(newitem);
 
@@ -87,12 +95,12 @@ public class ItemAddController {
             for (int i = 0; i < files.length; i++) {
                 MultipartFile file = files[i];
                 try {
-                    path = pictureUploadHelper.UploadfiletoServer(file, request, response, session);
+                    fileName = pictureUploadHelper.UploadfiletoServer(file, request, response, session);
                 } catch (IOException e) {
                     e.printStackTrace();
                     return "Upload picture to server feild";
                 }
-                if (path != null) {
+                if (fileName != null) {
 
                     Picture picture = new Picture();
                     picture.setItemId(itemid);
@@ -103,14 +111,14 @@ public class ItemAddController {
                         picture.setPicutureType(1);
                     }
 
-                    picture.setPicPath(path);
+                    picture.setPicPath(fileName);
                     picture.setCreateTime(new Date());
                     picture.setChangeTime(new Date());
                     try {
                         int id = pictureUploadHelper.AddNewPicturePath(picture);
                     } catch (Exception e) {
-                        //如果插入path失败 删除刚刚上传的图片 并且删除物品记录
-                        File dfile = new File(path);
+                        //如果插入图片名字失败 删除刚刚上传的图片 并且删除物品记录
+                        File dfile = new File(Constant.PICTURE_STROE_ADDREES+fileName);
                         dfile.delete();
                         pictureUploadHelper.deleteItemById(itemid);
                         e.printStackTrace();
@@ -118,6 +126,7 @@ public class ItemAddController {
                 }
             }
         }
+        //返回页面未定义
         return "ok";
     }
 

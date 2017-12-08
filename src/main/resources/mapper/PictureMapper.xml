@@ -17,6 +17,9 @@
       #{changeTime,jdbcType=TIMESTAMP}, #{picutureType,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}
       )
   </insert>
+  <sql id="Base_Column_List">
+    item_id,picuture_type,change_time,create_time,pic_path
+  </sql>
   <insert id="insertSelective" parameterType="cn.com.ibm.hackthon.po.Picture">
     insert into t_picuture
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -60,4 +63,10 @@
       </if>
     </trim>
   </insert>
+
+  <select id="selectPictureByItem" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_picuture where item_id=#{0}
+  </select>
 </mapper>

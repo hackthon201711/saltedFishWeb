@@ -3,6 +3,7 @@
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="include/Header-include.jsp"></jsp:include>
 
 <!-- Body BEGIN -->
@@ -25,28 +26,34 @@
           <div class="col-md-9 col-sm-7">
             <div class="product-page">
               <div class="row">
+
                 <div class="col-md-6 col-sm-6">
                   <div class="product-main-image">
-                    <img src="${pageContext.request.contextPath}/assets/pages/img/products/model7.jpg" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="${pageContext.request.contextPath}/assets/pages/img/products/model7.jpg">
+                  <c:forEach items="${mainpicture}" var="var" >
+                    <img src="${path}/${var.picPath}" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="${path}/${var.picPath}">
+                  </c:forEach>
                   </div>
                   <div class="product-other-images">
-                    <a href="${pageContext.request.contextPath}/assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="${pageContext.request.contextPath}/assets/pages/img/products/model3.jpg"></a>
-                    <a href="${pageContext.request.contextPath}/assets/pages/img/products/model4.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="${pageContext.request.contextPath}/assets/pages/img/products/model4.jpg"></a>
-                    <a href="${pageContext.request.contextPath}/assets/pages/img/products/model5.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="${pageContext.request.contextPath}/assets/pages/img/products/model5.jpg"></a>
+                  <c:forEach items="${pictureList}" var="var1" >
+                    <c:if test="${var1.picutureType==1}">
+                    <a href="${path}/${var1.picPath}" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="${path}/${var1.picPath}"></a>
+                    </c:if>
+                  </c:forEach>
                   </div>
+
                 </div>
+
                 <div class="col-md-6 col-sm-6">
-                  <h1>Cool green dress with red bell</h1>
+                  <h1>${itemdto.itemName}</h1>
                   <div class="price-availability-block clearfix">
                     <div class="price">
-                      <strong><span>$</span>47.00</strong>
-                      <em>$<span>62.00</span></em>
+                      <strong><span>$</span>${itemdto.curPrice}</strong>
+                      <em>$<span>${itemdto.prePrice}</span></em>
                     </div>
 
                   </div>
                   <div class="description">
-                    <p>Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed nonumy nibh sed euismod laoreet dolore magna aliquarm erat volutpat 
-Nostrud duis molestie at dolore.</p>
+                    <p>${itemdto.itemDesc}</p>
                   </div>
                   <div class="product-page-options">
                     <div class="pull-left">
@@ -76,7 +83,7 @@ Nostrud duis molestie at dolore.</p>
                   </ul>
                   <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade" id="Description">
-                      <p>Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore. Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore. Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore. </p>
+                      <p>${itemdto.itemDesc}</p>
                     </div>
                     <div class="tab-pane fade" id="Information">
                       <table class="datasheet">

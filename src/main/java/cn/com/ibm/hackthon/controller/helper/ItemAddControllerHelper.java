@@ -6,6 +6,7 @@ import cn.com.ibm.hackthon.service.ItemService;
 import cn.com.ibm.hackthon.service.ItemTypeService;
 import cn.com.ibm.hackthon.service.LocationService;
 import cn.com.ibm.hackthon.service.PictureService;
+import cn.com.ibm.hackthon.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,22 +37,24 @@ public class ItemAddControllerHelper {
 
     public String UploadfiletoServer(MultipartFile file, HttpServletRequest request, HttpServletResponse response, HttpSession session)throws IllegalStateException, IOException {
         String path=null;
+        String trueFileName="";
         if (file!=null) {// 判断上传的文件是否为空
 
             String type=null;// 文件类型
             String fileName=file.getOriginalFilename();// 文件原名称
+
             System.out.println("picture:"+fileName);
             // 判断文件类型
             type=fileName.indexOf(".")!=-1?fileName.substring(fileName.lastIndexOf(".")+1, fileName.length()):null;
             if (type!=null) {// 判断文件类型是否为空
                 if ("GIF".equals(type.toUpperCase())||"PNG".equals(type.toUpperCase())||"JPG".equals(type.toUpperCase())) {
                     // 项目在容器中实际发布运行的根路径
-                    String realPath=request.getSession().getServletContext().getRealPath("/");
+                    //String realPath=request.getSession().getServletContext().getRealPath("/");
                     // 自定义的文件名称
-                    String trueFileName=String.valueOf(System.currentTimeMillis())+fileName;
+                    trueFileName=String.valueOf(System.currentTimeMillis())+fileName;
                     // 设置存放图片文件的路径
-                    path=realPath+/*System.getProperty("file.separator")+*/trueFileName;
-                    System.out.println("store path:"+path);
+                    path= Constant.PICTURE_STROE_ADDREES+/*System.getProperty("file.separator")+*/trueFileName;
+                    System.out.println("store name:"+trueFileName);
                     // 转存文件到指定的路径
                     file.transferTo(new File(path));
                     System.out.println("path is====="+path);
@@ -67,7 +70,7 @@ public class ItemAddControllerHelper {
             System.out.println("no file existing");
             return null;
         }
-        return path;
+        return trueFileName;
     }
 
 
