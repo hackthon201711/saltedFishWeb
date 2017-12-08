@@ -17,4 +17,7 @@ public interface Constant {
 	public static final String PAGE_SHOP_STANDART_FORMS="shop-standart-forms";
 	public static final String PAGE_SHOP_WISHLIST="shop-wishlist";
 	public static final String PAGE_USER_REGISTER="user-register";
+	public static final String PICTURE_STROE_ADDREES="C://yu/";
+	//图片读取虚拟地址 需要相应的配置tomcat
+	public static final String PICTURE_VIRTUAL_ADRESS="http://localhost:8081/picture";
 }
