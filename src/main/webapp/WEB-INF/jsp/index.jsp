@@ -56,7 +56,7 @@
 
     <div class="main">
       <div class="container">
-        <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
+        <!-- BEGIN NEW ARRIVALS -->
         <div class="row margin-bottom-40">
           <!-- BEGIN SALE PRODUCT -->
           <div class="col-md-12 sale-product">
@@ -87,7 +87,7 @@
         </div>
         <!-- END SALE PRODUCT & NEW ARRIVALS -->
 
-        <!-- BEGIN SIDEBAR & CONTENT -->
+        <!-- BEGIN HOT ITEM -->
         <div class="row margin-bottom-40 ">
           <!-- BEGIN SIDEBAR -->
           <!-- END SIDEBAR -->
@@ -118,6 +118,39 @@
           </div>
           <!-- END CONTENT -->
         </div>
+        <!-- BEGIN Recommend ITEM -->
+        <c:if test="${recommendItemList!=null }">
+        
+	        <div class="row margin-bottom-40 ">
+	          <!-- BEGIN CONTENT -->
+	          <div class="col-md-12 col-sm-8">
+	            <h2>猜你喜欢</h2>
+				
+	            <div class="owl-carousel owl-carousel5">
+	            
+				  <c:forEach items="${recommendItemList }" var="it">
+		              <div>
+		                <div class="product-item">
+		                  <div class="pi-img-wrapper">
+		                    <img src="${pageContext.request.contextPath}/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+		                    <div>
+		                      <a href="${pageContext.request.contextPath}/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+		                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+		                    </div>
+		                  </div>
+		                  <h3><a href="shop-item.html">${it.itemName }</a></h3>
+		                  <div class="pi-price">￥${it.currentPrice }</div>
+		                  <a href="javascript:;" class="btn btn-default add2cart">Like</a>
+		
+		                </div>
+		              </div>
+				  </c:forEach>
+	            </div>
+	          </div>
+	          <!-- END CONTENT -->
+	        </div>
+        
+        </c:if>
         <!-- END SIDEBAR & CONTENT -->
 
       </div>

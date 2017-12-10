@@ -9,6 +9,7 @@ public class ItemExample {
 
     protected boolean distinct;
 
+    protected String userId;
     protected static final int limitAmount = 10;
     
     public int getLimitAmount() {
@@ -31,5 +32,15 @@ public class ItemExample {
     public boolean isDistinct() {
         return distinct;
     }
+
+
+	public String getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 }

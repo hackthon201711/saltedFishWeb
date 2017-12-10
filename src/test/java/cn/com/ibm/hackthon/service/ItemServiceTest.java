@@ -1,5 +1,6 @@
 package cn.com.ibm.hackthon.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -21,10 +22,27 @@ public class ItemServiceTest {
 	private ItemService itemService;
 	
 	@Test
-	public void testGetNewArrivalItemList() {
+	public void testGetNewArrivalItemList() throws SQLException {
 		List<ItemDTO> list = itemService.getNewArrivalItemList();
 		for (ItemDTO itemDTO : list) {
-			System.out.println(itemDTO.getId());
+			System.out.println(itemDTO);
+		}
+	}
+	
+
+	@Test
+	public void testGetHostItemList() throws SQLException {
+		List<ItemDTO> list = itemService.getHotItemList();
+		for (ItemDTO itemDTO : list) {
+			System.out.println(itemDTO);
+		}
+	}
+	
+	@Test
+	public void testGetRecommendItemList() throws SQLException {
+		List<ItemDTO> list = itemService.getRecommendItemList("2");
+		for (ItemDTO itemDTO : list) {
+			System.out.println(itemDTO);
 		}
 	}
 }

@@ -25,7 +25,7 @@ public class ItemServiceImpl implements ItemService{
 	private ItemMapper itemMapper; 
 	
 
-	public List<ItemDTO> getNewArrivalItemList() {
+	public List<ItemDTO> getNewArrivalItemList() throws SQLException{
 		logger.info("getNewArrivalItemList() called ");
 		ItemExample ie = new ItemExample();
 		ie.setDistinct(false);
@@ -34,7 +34,7 @@ public class ItemServiceImpl implements ItemService{
 	}
 
 
-	public List<ItemDTO> getHotItemList() {
+	public List<ItemDTO> getHotItemList() throws SQLException{
 		return itemMapper.selectHotItemList();
 	}
 
@@ -52,6 +52,13 @@ public class ItemServiceImpl implements ItemService{
 
 	public List<Item> selectItemByUserName(String username, int itemid) throws SQLException {
 		return itemMapper.selectItemByUserName(username,itemid);
+	}
+
+
+	public List<ItemDTO> getRecommendItemList(String userId) throws SQLException {
+		ItemExample ie = new ItemExample();
+		ie.setUserId(userId);
+		return itemMapper.selectRecommendItemByUserId(ie);
 	}
 
 

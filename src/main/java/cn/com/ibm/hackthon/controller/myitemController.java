@@ -41,7 +41,8 @@ public class myitemController {
 
 		String userID = (String) httpSession.getAttribute("userID");
 		System.out.println("login userID="+ userID);
-		List<ItemDTO> items = itemService.selectItemListByUser(1, 0);
+//		List<ItemDTO> items = itemService.selectItemListByUser(1, 0);
+		List<ItemDTO> items=null;
 		System.out.println("ls size="+items.size());
 		System.out.println("ls1="+ items.get(0).getItemName());
 		model.addAttribute("myitems", items);

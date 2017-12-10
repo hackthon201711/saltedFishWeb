@@ -11,16 +11,22 @@ public interface ItemService {
 	 * 取得新上架物品列表
 	 * @return
 	 */
-	List<ItemDTO> getNewArrivalItemList();
+	List<ItemDTO> getNewArrivalItemList()throws SQLException;
 	
 
 	/**
 	 * 取得热门物品列表
 	 * @return
 	 */
-	List<ItemDTO> getHotItemList();
+	List<ItemDTO> getHotItemList()throws SQLException;
 
-
+	/**
+	 * 取得推荐商品
+	 * @return
+	 * @throws SQLException
+	 */
+	List<ItemDTO> getRecommendItemList(String userId) throws SQLException;
+	
 	/**
 	 * 新建商品
 	 */
