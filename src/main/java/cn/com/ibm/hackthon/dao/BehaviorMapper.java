@@ -15,4 +15,9 @@ public interface BehaviorMapper {
     int updateByExampleSelective(@Param("record") Behavior record, @Param("example") BehaviorExample example);
 
     int updateByExample(@Param("record") Behavior record, @Param("example") BehaviorExample example);
+    
+    Behavior selectBehavior(int userid,int itemid); 
+    
+    void addNewBehavior(Behavior behavior);
+    void updateBehavior(Behavior behavior);
 }
