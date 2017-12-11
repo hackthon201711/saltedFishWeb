@@ -26,7 +26,7 @@ public interface ItemMapper {
      * @param userName
      * @return
      */
-    List<ItemDTO> selectRecommendItemByUserId(ItemExample example);
+    List<ItemDTO> selectItemByItemIds(String itemIds);
     
     List<ItemDTO> selectItemWithMainPicByUserId(String username,int status,@Param("picFlag") int pic_typ);
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import cn.com.ibm.hackthon.dto.ItemDTO;
 import cn.com.ibm.hackthon.service.ItemService;
+import cn.com.ibm.hackthon.util.Constant;
 
 @Component
 public class ShopControllerHelper {
@@ -22,7 +23,9 @@ public class ShopControllerHelper {
 	 * @throws SQLException 
 	 */
 	public List<ItemDTO> getNewArravalItem() throws SQLException{
-		return itemService.getNewArrivalItemList();
+		List<ItemDTO> list = itemService.getNewArrivalItemList();
+		changePicPath(list);
+		return list;
 	}
 	
 	/**
@@ -31,7 +34,9 @@ public class ShopControllerHelper {
 	 * @throws SQLException 
 	 */
 	public List<ItemDTO> getHotItem() throws SQLException{
-		return itemService.getHotItemList();
+		List<ItemDTO> list = itemService.getHotItemList();
+		changePicPath(list);
+		return list;
 	}
 	
 
@@ -41,6 +46,12 @@ public class ShopControllerHelper {
 	 * @throws SQLException 
 	 */
 	public List<ItemDTO> getRecommendItem(String userId) throws SQLException{
-		return itemService.getRecommendItemList(userId);
+		List<ItemDTO> list = itemService.getRecommendItemList(userId);
+		changePicPath(list);
+		return list;
+	}
+	
+	private void changePicPath(List<ItemDTO> list) {
+		list.stream().forEach(dto->dto.setPicPath(Constant.PICTURE_VIRTUAL_ADRESS+dto.getPicPath()));
 	}
 }

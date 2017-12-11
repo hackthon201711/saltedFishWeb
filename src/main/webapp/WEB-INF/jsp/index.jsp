@@ -62,14 +62,14 @@
           <div class="col-md-12 sale-product">
             <h2>新货上架</h2>
             <div class="owl-carousel owl-carousel5">
-			  <c:forEach items="${ newItemList}" var="item">
+			  <c:forEach items="${ newItemList}" var="item" begin="0" end="5">
 	              <div>
 	                <div class="product-item">
 	                  <div class="pi-img-wrapper">
-	                    <img src="${pageContext.request.contextPath}/assets/pages/img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
+	                    <img src="${item.picPath}" class="img-responsive" alt="Berry Lace Dress">
 	                    <div>
-	                      <a href="${pageContext.request.contextPath}/assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-	                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+	                      <a href="${item.picPath}" class="btn btn-default fancybox-button">Zoom</a>
+	                      <!-- a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a> -->
 	                    </div>
 	                  </div>
 	                  <h3><a href="shop-item.html">${item.itemName }</a></h3>
@@ -82,6 +82,26 @@
               
             </div>
 			
+            <div class="owl-carousel owl-carousel5">
+			  <c:forEach items="${ newItemList}" var="item" begin="5" end="10">
+	              <div>
+	                <div class="product-item">
+	                  <div class="pi-img-wrapper">
+	                    <img src="${item.picPath}" class="img-responsive" alt="Berry Lace Dress">
+	                    <div>
+	                      <a href="${item.picPath}" class="btn btn-default fancybox-button">Zoom</a>
+	                      <!-- a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a> -->
+	                    </div>
+	                  </div>
+	                  <h3><a href="shop-item.html">${item.itemName }</a></h3>
+	                  <div class="pi-price">￥${item.currentPrice }</div>
+	                  <a href="javascript:;" class="btn btn-default add2cart">Like</a>
+	 
+	                </div>
+	              </div>
+			  </c:forEach>
+              
+            </div>
           </div>
           <!-- END SALE PRODUCT -->
         </div>
@@ -101,9 +121,9 @@
 	              <div>
 	                <div class="product-item">
 	                  <div class="pi-img-wrapper">
-	                    <img src="${pageContext.request.contextPath}/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+	                    <img src="${it.picPath}" class="img-responsive" alt="Berry Lace Dress">
 	                    <div>
-	                      <a href="${pageContext.request.contextPath}/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+	                      <a href="${it.picPath}" class="btn btn-default fancybox-button">Zoom</a>
 	                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
 	                    </div>
 	                  </div>
@@ -132,9 +152,9 @@
 		              <div>
 		                <div class="product-item">
 		                  <div class="pi-img-wrapper">
-		                    <img src="${pageContext.request.contextPath}/assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+		                    <img src="${it.picPath}" class="img-responsive" alt="Berry Lace Dress">
 		                    <div>
-		                      <a href="${pageContext.request.contextPath}/assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+		                      <a href="${it.picPath}" class="btn btn-default fancybox-button">Zoom</a>
 		                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
 		                    </div>
 		                  </div>

@@ -1,7 +1,10 @@
 package cn.com.ibm.hackthon.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.resource.spi.AuthenticationMechanism;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +12,14 @@ import org.springframework.stereotype.Component;
 
 import ch.qos.logback.classic.Logger;
 import cn.com.ibm.hackthon.dao.ItemMapper;
+import cn.com.ibm.hackthon.dao.RecommendMapper;
 import cn.com.ibm.hackthon.dto.ItemDTO;
+import cn.com.ibm.hackthon.dto.ItemRateDTO;
 import cn.com.ibm.hackthon.po.Item;
 import cn.com.ibm.hackthon.po.ItemExample;
+import cn.com.ibm.hackthon.po.Recommend;
+import cn.com.ibm.hackthon.util.Constant;
+import cn.com.ibm.hackthon.util.StringUtil;
 
 @Component
 public class ItemServiceImpl implements ItemService{
@@ -25,6 +33,8 @@ public class ItemServiceImpl implements ItemService{
 	private ItemMapper itemMapper; 
 	
 
+	@Autowired
+	RecommendMapper recommendMapper;
 	public List<ItemDTO> getNewArrivalItemList() throws SQLException{
 		logger.info("getNewArrivalItemList() called ");
 		ItemExample ie = new ItemExample();
@@ -56,9 +66,31 @@ public class ItemServiceImpl implements ItemService{
 
 
 	public List<ItemDTO> getRecommendItemList(String userId) throws SQLException {
-		ItemExample ie = new ItemExample();
-		ie.setUserId(userId);
-		return itemMapper.selectRecommendItemByUserId(ie);
+		
+		List<Recommend> recommList = recommendMapper.selectByUserId(new Integer(userId));
+		if(recommList==null) {
+			return null;
+		}
+		StringBuffer sb = new StringBuffer();
+		for (int i =0;i<recommList.size();i++) {
+			if(i>0) {
+				sb.append(Constant.SYMBOL_COMMA);
+			}
+			sb.append(recommList.get(i).getItemid());
+			i++;
+		}
+		List<ItemRateDTO> irDTOList = StringUtil.parseStrToList(sb.toString());
+		if(irDTOList==null) {
+			return null;
+		}
+		sb = new StringBuffer();
+		for (int j=0;j<irDTOList.size();j++ ) {
+			if(j>0) {
+				sb.append(Constant.SYMBOL_COMMA);
+			}
+			sb.append(irDTOList.get(j).getItemId());
+		}
+		return itemMapper.selectItemByItemIds(sb.toString());
 	}
 
 

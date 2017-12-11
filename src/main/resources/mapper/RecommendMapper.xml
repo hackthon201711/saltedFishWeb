@@ -3,14 +3,12 @@
 <mapper namespace="cn.com.ibm.hackthon.dao.RecommendMapper">
   <resultMap id="BaseResultMap" type="cn.com.ibm.hackthon.po.Recommend">
     <result column="userid" jdbcType="INTEGER" property="userid" />
-    <result column="itemid" jdbcType="INTEGER" property="itemid" />
+    <result column="itemid" jdbcType="VARCHAR" property="itemid" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <insert id="insert" parameterType="cn.com.ibm.hackthon.po.Recommend">
-    insert into t_recommend (userid, itemid, create_time
-      )
-    values (#{userid,jdbcType=INTEGER}, #{itemid,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
-      )
+    insert into t_recommend (userid, itemid)
+    values (#{userid,jdbcType=INTEGER}, #{itemid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.com.ibm.hackthon.po.Recommend">
     insert into t_recommend
@@ -21,9 +19,6 @@
       <if test="itemid != null">
         itemid,
       </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userid != null">
@@ -32,10 +27,14 @@
       <if test="itemid != null">
         #{itemid,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
     </trim>
   </insert>
-  
+  <select id="selectByUserId" resultMap="BaseResultMap">
+  	select * from fish.t_recommend
+  	<where>
+  		<if test="0!=null">
+  			userid=#{0}
+  		</if>
+  	</where>
+  </select>
 </mapper>

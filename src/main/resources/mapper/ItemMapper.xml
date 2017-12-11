@@ -146,7 +146,7 @@
 		a.status, a.location_id, a.field,b.pic_path
 		from t_item a left join t_picuture b on a.item_id=b.item_id
 		<if test="orderByClause != null">
-			order by a.${orderByClause}
+			order by a.${orderByClause} desc
 		</if>
 
 		<if test="limitAmount != null">
@@ -164,12 +164,11 @@
 		c.item_id=e.item_id
 	</select>
 	<!-- 获得推荐商品list -->
-	<select id="selectRecommendItemByUserId" resultMap="ItemAndPicMap">
-		select i.*,p.pic_path from fish.t_user u join fish.t_recommend r on r.userid=u.userid 
-		join fish.t_item i on r.itemid=i.item_id join fish.t_picuture p on i.item_id=p.item_id
+	<select id="selectItemByItemIds" resultMap="ItemAndPicMap">
+		select i.*,p.pic_path from fish.t_item i join fish.t_picuture p on i.item_id=p.item_id
 		<where >
-			<if test="userId!=null">
-				And r.userId= #{userId,jdbcType=VARCHAR}
+			<if test="0!=null">
+				And i.item_id in (#{0})
 			</if>
 		</where>
 	</select>
