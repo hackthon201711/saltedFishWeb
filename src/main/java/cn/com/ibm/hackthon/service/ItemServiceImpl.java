@@ -49,7 +49,8 @@ public class ItemServiceImpl implements ItemService{
 	}
 
 	public int insertItem(Item item)throws SQLException {
-		return itemMapper.insertItem(item);
+		itemMapper.insertItem(item);
+		return item.getItemId();
 	}
 
 	public void deleteItemById(int id)throws SQLException {

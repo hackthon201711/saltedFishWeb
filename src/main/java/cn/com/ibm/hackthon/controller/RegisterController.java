@@ -22,7 +22,7 @@ import cn.com.ibm.hackthon.po.User;
 
 
 @Controller
-@RequestMapping("/reg")
+@RequestMapping
 public class RegisterController {
 	private static final Log logger = LogFactory.getLog(RegisterController.class);
 	
@@ -34,7 +34,7 @@ public class RegisterController {
 		System.out.println("register start=" + userID + ","+psw1);
 		int RCcode = regHelper.constructUser(userID,psw1,psw2,nickName,email,telephone);
 		System.out.println("RCcode=" + RCcode);
-		model.addAttribute("loginmsg", "×¢²á³É¹¦£¬ÇëµÇÂ¼£¡");
+		model.addAttribute("loginmsg", "×¢ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½");
 		return "login";
 	}
 	

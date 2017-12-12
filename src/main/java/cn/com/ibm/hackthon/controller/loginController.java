@@ -24,7 +24,7 @@ import cn.com.ibm.hackthon.po.User;
 
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping
 public class loginController {
 	private static final Log logger = LogFactory.getLog(loginController.class);
 	

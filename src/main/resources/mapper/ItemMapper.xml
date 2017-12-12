@@ -23,7 +23,7 @@
 		item_desc,field,status,cur_price,pre_price,item_name,Item_type_id,item_id
 	</sql>
 	<insert id="insertItem" parameterType="cn.com.ibm.hackthon.po.Item"
-		useGeneratedKeys="true" keyProperty="item_id">
+		useGeneratedKeys="true" keyProperty="itemId">
 		insert into t_item ( user_id, Item_type_id,
 		item_name, pre_price, cur_price,
 		create_time, last_change_time, status,

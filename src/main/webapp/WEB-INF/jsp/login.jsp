@@ -12,9 +12,8 @@
     <div class="main">
       <div class="container">
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="">Store</a></li>
-            <li class="active">Standart forms</li>
+            <li><a href="${pageContext.request.contextPath}/page_index">首页</a></li>
+            <li class="active">用户登录</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
@@ -44,7 +43,7 @@
                 <div class="row">
                   <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
                     <button class="btn btn-primary" type="submit">登录</button>
-					<a  href="${pageContext.request.contextPath}/reg/FWregister">还未注册？注册</a> 
+					<a  href="${pageContext.request.contextPath}/FWregister">还未注册？注册</a> 
 
                   </div>
                 </div>

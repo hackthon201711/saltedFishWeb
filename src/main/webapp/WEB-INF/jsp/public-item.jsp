@@ -12,9 +12,8 @@
     <div class="main">
       <div class="container">
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="">Store</a></li>
-            <li class="active">Standart forms</li>
+            <li><a href="${pageContext.request.contextPath}/page_index">首页</a></li>
+            <li class="active">发布商品</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
@@ -24,7 +23,7 @@
           <div class="col-md-9 col-sm-7">
             <h1>商品发布</h1>
             <div class="content-form-page">
-              <form role="form" class="form-horizontal form-without-legend" action="/file/addnewItem" method="post" enctype="multipart/form-data">
+              <form role="form" class="form-horizontal form-without-legend" action="addnewItem" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="first-name">商品名称 <span class="require">*</span></label>
                   <div class="col-lg-8">

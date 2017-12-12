@@ -3,9 +3,11 @@ package cn.com.ibm.hackthon.util;
 public interface Constant {
 	/** 物品状态*/
 	/** 已发布*/
-	public static final String ITEM_STATUS_PUBLISHED = "1";
+	public static final int ITEM_STATUS_PUBLISHED = 0;
 	/** 已关闭*/
-	public static final String ITEM_STATUS_CLOSED = "2";
+	public static final int ITEM_STATUS_CLOSED = 1;
+	
+	public static final int FIRST_PIC = 0;
 	
 	/**index 页面**/
 	public static final String PAGE_INDEX="index";

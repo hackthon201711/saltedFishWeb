@@ -2,11 +2,13 @@ package cn.com.ibm.hackthon.controller;
 
 
 import cn.com.ibm.hackthon.controller.helper.ItemAddControllerHelper;
-
+import cn.com.ibm.hackthon.controller.helper.loginControllerHelper;
 import cn.com.ibm.hackthon.po.Item;
 import cn.com.ibm.hackthon.po.Location;
 import cn.com.ibm.hackthon.po.Picture;
+import cn.com.ibm.hackthon.po.User;
 import cn.com.ibm.hackthon.service.LocationService;
+import cn.com.ibm.hackthon.service.UserService;
 import cn.com.ibm.hackthon.util.Constant;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -38,6 +40,9 @@ public class ItemAddController {
 
     @Resource
     ItemAddControllerHelper pictureUploadHelper;
+    
+	@Resource 
+	private UserService userService;
 
 
 
@@ -72,10 +77,13 @@ public class ItemAddController {
      */
     @RequestMapping(value="/addnewItem",method=RequestMethod.POST)
     public String AddItemTest(String preprice,String curprice,String itemName,String itemDec,Integer locationid,Integer typeid,@RequestParam("files") MultipartFile[] files, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws SQLException {
-
+    	
+    	String userID = (String) session.getAttribute("userID");
+    	User user = userService.selectUserByName(userID);
+    	
         String fileName = null;
         Item newitem=new Item();
-        newitem.setUserId(1);
+        newitem.setUserId(user.getUserid());
         newitem.setCreateTime(new Date());
         newitem.setLastChangeTime(new Date());
         newitem.setCurPrice(Long.parseLong(curprice));
@@ -127,7 +135,7 @@ public class ItemAddController {
             }
         }
         //返回页面未定义
-        return "ok";
+        return "redirect:/page_index";
     }
 
 

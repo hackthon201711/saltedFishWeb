@@ -24,11 +24,12 @@ import cn.com.ibm.hackthon.dao.UserMapper;
 import cn.com.ibm.hackthon.dto.ItemDTO;
 import cn.com.ibm.hackthon.po.User;
 import cn.com.ibm.hackthon.service.ItemService;
+import cn.com.ibm.hackthon.util.Constant;
 
 
 
 @Controller
-@RequestMapping("/myitem")
+@RequestMapping
 public class myitemController {
 	private static final Log logger = LogFactory.getLog(myitemController.class);
 	
@@ -41,10 +42,9 @@ public class myitemController {
 
 		String userID = (String) httpSession.getAttribute("userID");
 		System.out.println("login userID="+ userID);
+		List<ItemDTO> items = itemService.selectItemListByUser(userID, Constant.ITEM_STATUS_PUBLISHED,Constant.FIRST_PIC);
 
-		List<ItemDTO> items = itemService.selectItemListByUser(userID, 0,0);
-		System.out.println("ls size="+items.size());
-		System.out.println("ls1="+ items.get(0).getItemName());
+
 		model.addAttribute("myitems", items);
 		
 		return "shop-myitem";
