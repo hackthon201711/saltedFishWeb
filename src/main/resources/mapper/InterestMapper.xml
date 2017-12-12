@@ -8,6 +8,17 @@
     <result column="field1" jdbcType="VARCHAR" property="field1" />
     <result column="field2" jdbcType="VARCHAR" property="field2" />
   </resultMap>
+  <select id="selectInteretByUserIdAndItemId" resultMap="BaseResultMap">
+  	select * from fish.t_interest
+  	<where>
+  		<if test="0!=null">
+  			and user_id=#{0}
+  		</if>
+  		<if test="1!=null">
+  			and item_id=#{0}
+  		</if>
+  	</where>
+  </select>
   <insert id="insert" parameterType="cn.com.ibm.hackthon.po.Interest">
     insert into t_interest (item_id, userid, create_time, 
       field1, field2)

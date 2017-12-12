@@ -144,7 +144,7 @@
 		a.item_id, a.user_id, a.Item_type_id, a.item_name,item_desc, a.pre_price,
 		a.cur_price,
 		a.status, a.location_id, a.field,b.pic_path
-		from t_item a left join t_picuture b on a.item_id=b.item_id
+		from t_item a join t_picuture b on a.item_id=b.item_id
 		<if test="orderByClause != null">
 			order by a.${orderByClause} desc
 		</if>
@@ -167,6 +167,15 @@
 	<select id="selectItemByItemIds" resultMap="ItemAndPicMap">
 		select i.*,p.pic_path from fish.t_item i join fish.t_picuture p on i.item_id=p.item_id
 		<where >
+			<if test="0!=null">
+				And i.item_id in (#{0})
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectInterestedItem" resultMap="ItemAndPicMap">
+		select b.* from fish.t_interest a join fish.t_item b on a.item_id=b.item_id join fish.t_picuture c on b.item_id=c.item_id
+		<where>
 			<if test="0!=null">
 				And i.item_id in (#{0})
 			</if>

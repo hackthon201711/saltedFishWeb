@@ -22,7 +22,12 @@ public interface ItemMapper {
     List<ItemDTO> selectHotItemList();
 
     /**
-     * 根据用户id获得推荐商品列表
+     * 获得感兴趣商品列表
+     * @return
+     */
+    List<ItemDTO> selectInterestedItem();
+    /**
+     * 根据商品id集合获得推荐商品列表
      * @param userName
      * @return
      */
