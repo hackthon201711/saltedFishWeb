@@ -59,22 +59,17 @@
 						<input type="file" name="files" />
 						<input type="file" name="files" />
 						<input type="file" name="files" />
-						<input type="file" name="files" />
-						<input type="file" name="files" />
-						<input type="file" name="files" />
-						<input type="file" name="files" />
-						<input type="file" name="files" />
-						<input type="file" name="files" />
 
-					<div/>
-				<div/>
+
+					</div>
+				</div>
 				 <div class="form-group">
-                  <label class="col-lg-2 control-label" >原始价格</label>
-                        <div class="col-lg-8">
+                  <label class="col-lg-3 control-label" >原始价格</label>
+                        <div class="col-lg-2">
                              <input type="text" id="preprice" name="preprice" class="form-control">
                         </div>
-                  <label class="col-lg-2 control-label" >现在价格</label>
-                       <div class="col-lg-8">
+                  <label class="col-lg-3 control-label" >现在价格</label>
+                       <div class="col-lg-2">
                              <input type="text" id="curprice" name="curprice" class="form-control">
                         </div>
                   </div>
@@ -82,7 +77,7 @@
 
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="first-name">商品描述 </label>
-                  <textarea class="form-control" rows="8" id="dec" name="itemDec"></textarea>
+                  <textarea class="col-lg-8" rows="8" id="dec" name="itemDec"></textarea>
                 </div>
 
 

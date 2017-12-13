@@ -39,7 +39,7 @@ public class ItemDetailControllerHelper {
             System.out.println("=================="+itemlist);
             System.out.println("Item DESC="+ Item.getItemDesc());
 
-            List<Picture> pictureList=pictureService.getPictureList(1);
+            List<Picture> pictureList=pictureService.getPictureList(itemid);
             //取出附图
             List<Picture> deplist = pictureList.parallelStream().filter(p -> p.getPicutureType()==1)
                     .collect(Collectors.toList());
