@@ -40,7 +40,8 @@
                  <c:forEach items="${myitems}" var="item">
                    <tr>
                     <td class="goods-page-image">
-                      <a href="javascript:;"><img src="${item.picPath}" alt=${item.itemName}></a>
+                    
+                      <a href="javascript:;"><img src="${prepath}${item.picPath}" alt=${item.itemName}></a>
                     </td>
                     <td class="goods-page-description">
                       <h3><a href="javascript:;">${item.itemName}</a></h3>

@@ -44,8 +44,9 @@ public class myitemController {
 		System.out.println("login userID="+ userID);
 		List<ItemDTO> items = itemService.selectItemListByUser(userID, Constant.ITEM_STATUS_PUBLISHED,Constant.FIRST_PIC);
 
-
+		
 		model.addAttribute("myitems", items);
+		model.addAttribute("prepath", Constant.PICTURE_VIRTUAL_ADRESS);
 		
 		return "shop-myitem";
 	}
