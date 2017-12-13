@@ -155,17 +155,20 @@
 		resultMap="ItemAndPicMap">
 		select c.*,e.pic_path from fish.t_item c join
 		(select b.item_id,count(*) from fish.t_item a join fish.t_interest b on
-		a.item_id=b.item_id where a.status=1 group by a.item_id order by
+		a.item_id=b.item_id where a.status=0 group by a.item_id order by
 		count(*) limit 5) d
-		on c.item_id=d.item_id join fish.t_picuture e on
+		on c.item_id=d.item_id left join fish.t_picuture e on
 		c.item_id=e.item_id
 	</select>
 	<!-- 获得推荐商品list -->
 	<select id="selectItemByItemIds" resultMap="ItemAndPicMap">
-		select i.*,p.pic_path from fish.t_item i join fish.t_picuture p on i.item_id=p.item_id
+		select i.*,p.pic_path from fish.t_item i left join fish.t_picuture p on i.item_id=p.item_id
 		<where >
 			<if test="0!=null">
-				And i.item_id in (#{0})
+				And i.item_id in 
+				<foreach item="itemList" index="index" collection="list" open="(" separator="," close=")">  
+				  #{itemList}  
+				</foreach>  
 			</if>
 		</where>
 	</select>

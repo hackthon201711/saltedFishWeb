@@ -84,14 +84,15 @@ public class ItemServiceImpl implements ItemService{
 		if(irDTOList==null) {
 			return null;
 		}
-		sb = new StringBuffer();
+		List<String> itemList = new ArrayList<>();
 		for (int j=0;j<irDTOList.size();j++ ) {
-			if(j>0) {
-				sb.append(Constant.SYMBOL_COMMA);
-			}
-			sb.append(irDTOList.get(j).getItemId());
+//			if(j>0) {
+//				sb.append(Constant.SYMBOL_COMMA);
+//			}
+//			sb.append(irDTOList.get(j).getItemId());
+			itemList.add(irDTOList.get(j).getItemId());
 		}
-		return itemMapper.selectItemByItemIds(sb.toString());
+		return itemMapper.selectItemByItemIds(itemList);
 	}
 
 

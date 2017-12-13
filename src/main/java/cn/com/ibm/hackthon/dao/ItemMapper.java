@@ -31,7 +31,7 @@ public interface ItemMapper {
      * @param userName
      * @return
      */
-    List<ItemDTO> selectItemByItemIds(String itemIds);
+    List<ItemDTO> selectItemByItemIds(List<String> itemIds);
     
     List<ItemDTO> selectItemWithMainPicByUserId(String username,int status,int pic_typ);
 

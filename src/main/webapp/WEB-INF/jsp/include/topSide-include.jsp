@@ -37,13 +37,13 @@
                       <c:if test="${sessionScope.userID!=null }">      
                         <li><a href="${pageContext.request.contextPath}/file/publicItem">我要发布</a></li>
                         
-                        <li><a href="${pageContext.request.contextPath}/myinterest">我要关注的商品</a></li>
+                        <li><a href="${pageContext.request.contextPath}/myinterest">我关注的商品</a></li>
                         <li><a href="${pageContext.request.contextPath}/myitem">已发布的商品</a></li>
                         <li>${sessionScope.userID}</li>
                         <li><a href="${pageContext.request.contextPath}/logoff">退出登录</a></li>
                       </c:if>  
                       <c:if test="${sessionScope.userID==null }">
-                      	<li><a href="${pageContext.request.contextPath}/FWlogin">登陆</a></li>
+                      	<li><a href="${pageContext.request.contextPath}/FWlogin">登录</a></li>
                       </c:if>
                         
                     </ul>

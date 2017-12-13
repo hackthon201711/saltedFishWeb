@@ -42,7 +42,7 @@ public class ShopController implements Constant{
 		log.info("hot Item List...."+hotItemList);
 		mav.addObject("hotItemList", hotItemList);//热门商品list
 		
-		Object obj = session.getAttribute("userId");
+		Object obj = session.getAttribute(Constant.USERID_IN_SESSION);
 		if(obj!=null) {
 			String userId = obj.toString();
 			List<ItemDTO> recommendItemList = helper.getRecommendItem(userId);
