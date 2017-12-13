@@ -34,7 +34,8 @@ public class ItemDetailController {
     @RequestMapping(value="/ItemDetail",method= RequestMethod.GET)
     public ModelAndView publicItem(int itemid,Model model,HttpSession httpSession) throws SQLException {
     	System.out.println("itemid===>"+ itemid);
-    	String userid = (String) httpSession.getAttribute("userId");
+    	String userid = (String) httpSession.getAttribute("userID");
+    	System.out.println("userid===>"+ userid);
     	if(userid!=null) {
     	   	behaviorHelper.addOrupdateBehavior(userid,itemid);
     	}
