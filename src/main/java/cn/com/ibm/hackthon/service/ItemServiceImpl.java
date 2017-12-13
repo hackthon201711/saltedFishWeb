@@ -61,8 +61,8 @@ public class ItemServiceImpl implements ItemService{
 		return itemMapper.selectItemWithMainPicByUserId(username,status,pic_typ);
 	}
 
-	public List<Item> selectItemByUserName(String username, int itemid) throws SQLException {
-		return itemMapper.selectItemByUserName(username,itemid);
+	public List<Item> selectItemByUserName(int itemid) throws SQLException {
+		return itemMapper.selectItemByUserName(itemid);
 	}
 
 

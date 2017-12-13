@@ -55,5 +55,5 @@ public interface ItemService {
 	/**
 	 * 查找商品详细信息
 	 */
-	List<Item> selectItemByUserName(String username,int itemid)throws SQLException;
+	List<Item> selectItemByUserName(int itemid)throws SQLException;
 }

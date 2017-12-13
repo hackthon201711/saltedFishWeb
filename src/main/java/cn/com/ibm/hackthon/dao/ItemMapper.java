@@ -33,7 +33,7 @@ public interface ItemMapper {
      */
     List<ItemDTO> selectItemByItemIds(String itemIds);
     
-    List<ItemDTO> selectItemWithMainPicByUserId(String username,int status,@Param("picFlag") int pic_typ);
+    List<ItemDTO> selectItemWithMainPicByUserId(String username,int status,int pic_typ);
 
-    List<Item> selectItemByUserName(String username,int item_id);
+    List<Item> selectItemByUserName(int item_id);
 }

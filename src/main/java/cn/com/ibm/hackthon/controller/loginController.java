@@ -43,7 +43,7 @@ public class loginController {
 		httpSession.setAttribute("userID", userID);
 		System.out.println("login success="+ httpSession.getAttribute("userID"));
 		
-		return "index";
+		return "redirect:/page_index";
 	}
 	
 	@RequestMapping(value="/FWlogin",method=RequestMethod.GET)

@@ -32,11 +32,15 @@ public class ItemDetailController {
      * 显示物品详情
      */
     @RequestMapping(value="/ItemDetail",method= RequestMethod.GET)
-    public ModelAndView publicItem(Model model,HttpSession httpSession) throws SQLException {
+    public ModelAndView publicItem(int itemid,Model model,HttpSession httpSession) throws SQLException {
+    	System.out.println("itemid===>"+ itemid);
     	String userid = (String) httpSession.getAttribute("userId");
-    	behaviorHelper.addOrupdateBehavior(userid,1);
+    	if(userid!=null) {
+    	   	behaviorHelper.addOrupdateBehavior(userid,itemid);
+    	}
+ 
         //display drop down list info
-        ModelAndView mav= itemDetailHelper.displayItemDetail("shop-item");
+        ModelAndView mav= itemDetailHelper.displayItemDetail("shop-item",itemid);
         return mav;
     }
 

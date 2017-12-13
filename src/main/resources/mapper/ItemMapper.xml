@@ -187,8 +187,8 @@
 		select
 		i.item_id,user_id,Item_type_id,item_name,item_desc,pre_price,cur_price,i.status,u.location_id,field,pic_path
 		from fish.t_item i join t_user u left join fish.t_picuture pi on
-		u.userid=i.user_id and i.item_id=pi.item_id where u.username=#{0}
-		<if test="picFlag==0">and pi.picuture_type=0</if>
+		u.userid=i.user_id and i.item_id=pi.item_id where u.loginname=#{0}
+		and pi.picuture_type=#{2}
 		and i.status=#{1}
 	</select>
 
@@ -197,7 +197,7 @@
 		select
 		<include refid="Base_Column_List" />
 		, i.location_id,i.last_change_time,i.create_time
-		from t_item i join t_user u on u.userid=i.user_id where u.loginname=#{0}
-		and i.item_id=#{1}
+		from t_item i join t_user u on u.userid=i.user_id where 
+		i.item_id=#{0}
 	</select>
 </mapper>

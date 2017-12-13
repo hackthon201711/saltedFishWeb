@@ -66,13 +66,14 @@
 	              <div>
 	                <div class="product-item">
 	                  <div class="pi-img-wrapper">
-	                    <img src="${item.picPath}" class="img-responsive" alt="Berry Lace Dress">
+	                    <img src="${item.picPath}" class="img-responsive" alt="${item.itemName}">
+	   
 	                    <div>
 	                      <a href="${item.picPath}" class="btn btn-default fancybox-button">Zoom</a>
 	                      <!-- a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a> -->
 	                    </div>
 	                  </div>
-	                  <h3><a href="shop-item.html">${item.itemName }</a></h3>
+	                  <h3><a href="${pageContext.request.contextPath}/itemD/ItemDetail?itemid=${item.id}">${item.itemName }</a></h3>
 	                  <div class="pi-price">￥${item.currentPrice }</div>
 	                  <a href="javascript:;" class="btn btn-default add2cart">Like</a>
 	 
@@ -87,7 +88,7 @@
 	              <div>
 	                <div class="product-item">
 	                  <div class="pi-img-wrapper">
-	                    <img src="${item.picPath}" class="img-responsive" alt="Berry Lace Dress">
+	                    <img src="${item.picPath}" class="img-responsive" alt="${item.itemName}">
 	                    <div>
 	                      <a href="${item.picPath}" class="btn btn-default fancybox-button">Zoom</a>
 	                      <!-- a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a> -->
@@ -121,7 +122,7 @@
 	              <div>
 	                <div class="product-item">
 	                  <div class="pi-img-wrapper">
-	                    <img src="${it.picPath}" class="img-responsive" alt="Berry Lace Dress">
+	                    <img src="${it.picPath}" class="img-responsive" alt="${item.itemName}">
 	                    <div>
 	                      <a href="${it.picPath}" class="btn btn-default fancybox-button">Zoom</a>
 	                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
@@ -152,7 +153,7 @@
 		              <div>
 		                <div class="product-item">
 		                  <div class="pi-img-wrapper">
-		                    <img src="${it.picPath}" class="img-responsive" alt="Berry Lace Dress">
+		                    <img src="${it.picPath}" class="img-responsive" alt="${item.itemName}">
 		                    <div>
 		                      <a href="${it.picPath}" class="btn btn-default fancybox-button">Zoom</a>
 		                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
@@ -177,6 +178,7 @@
     </div>
 
 <jsp:include page="include/footer-include.jsp"></jsp:include>    
+ 
 </body>
 <!-- END BODY -->
 </html>

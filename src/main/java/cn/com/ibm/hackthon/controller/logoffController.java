@@ -35,7 +35,7 @@ public class logoffController {
 
 		System.out.println("logoff success=");
 		
-		return "index";
+		return "redirect:/page_index";
 	}
 	
 }

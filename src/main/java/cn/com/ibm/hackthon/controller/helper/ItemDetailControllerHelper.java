@@ -29,11 +29,11 @@ public class ItemDetailControllerHelper {
     private ItemService itemService;
 
     private final String PATH= Constant.PICTURE_VIRTUAL_ADRESS;
-    public ModelAndView displayItemDetail(String s) throws SQLException{
+    public ModelAndView displayItemDetail(String s,int itemid) throws SQLException{
         ModelAndView mav = new ModelAndView(s);
 
         //需要获取session 中 loginname and itemid
-        List <Item>itemlist = itemService.selectItemByUserName("STGI",1);
+        List <Item>itemlist = itemService.selectItemByUserName(itemid);
         if(itemlist!=null){
             Item Item=(Item)itemlist.get(0);
             System.out.println("=================="+itemlist);
