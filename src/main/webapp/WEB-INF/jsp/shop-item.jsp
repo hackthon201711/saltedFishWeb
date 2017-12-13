@@ -13,9 +13,8 @@
     <div class="main">
       <div class="container">
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="">Store</a></li>
-            <li class="active">Cool green dress with red bell</li>
+            <li><a href="${pageContext.request.contextPath}/page_index">首页</a></li>
+            <li class="active">商品详情</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
@@ -30,13 +29,13 @@
                 <div class="col-md-6 col-sm-6">
                   <div class="product-main-image">
                   <c:forEach items="${mainpicture}" var="var" >
-                    <img src="${path}/${var.picPath}" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="${path}/${var.picPath}">
+                    <img src="${path}/${var.picPath}" alt="${itemdto.itemName}" class="img-responsive" data-BigImgsrc="${path}/${var.picPath}">
                   </c:forEach>
                   </div>
                   <div class="product-other-images">
                   <c:forEach items="${pictureList}" var="var1" >
                     <c:if test="${var1.picutureType==1}">
-                    <a href="${path}/${var1.picPath}" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="${path}/${var1.picPath}"></a>
+                    <a href="${path}/${var1.picPath}" class="fancybox-button" rel="photos-lib"><img alt="${itemdto.itemName}" src="${path}/${var1.picPath}"></a>
                     </c:if>
                   </c:forEach>
                   </div>
@@ -47,8 +46,8 @@
                   <h1>${itemdto.itemName}</h1>
                   <div class="price-availability-block clearfix">
                     <div class="price">
-                      <strong><span>$</span>${itemdto.curPrice}</strong>
-                      <em>$<span>${itemdto.prePrice}</span></em>
+                      <strong><span>￥</span>${itemdto.curPrice}</strong>
+                      <em>￥<span>${itemdto.prePrice}</span></em>
                     </div>
 
                   </div>
@@ -68,7 +67,7 @@
                     <button class="btn btn-primary" type="submit">Like</button>
                   </div>
                   <div class="review">
-                    <input type="range" value="4" step="0.25" id="backing4">
+                    <!-- <input type="range" value="4" step="0.25" id="backing4"> -->
                     <div class="rateit" data-rateit-backingfld="#backing4" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
                     </div>
                     <a href="javascript:;">7 reviews</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;">Write a review</a>
@@ -150,12 +149,12 @@
                           <label for="review">Review <span class="require">*</span></label>
                           <textarea class="form-control" rows="8" id="review"></textarea>
                         </div>
-                        <div class="form-group">
+<!--                         <div class="form-group">
                           <label for="email">Rating</label>
                           <input type="range" value="4" step="0.25" id="backing5">
                           <div class="rateit" data-rateit-backingfld="#backing5" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
                           </div>
-                        </div>
+                        </div> -->
                         <div class="padding-top-20">                  
                           <button type="submit" class="btn btn-primary">Send</button>
                         </div>

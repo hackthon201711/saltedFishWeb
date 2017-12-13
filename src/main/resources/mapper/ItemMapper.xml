@@ -14,10 +14,7 @@
 		<result column="status" jdbcType="INTEGER" property="status" />
 		<result column="location_id" jdbcType="INTEGER" property="locationId" />
 		<result column="field" jdbcType="VARCHAR" property="field" />
-	</resultMap>
-	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
-		type="cn.com.ibm.hackthon.po.Item">
-		<result column="item_desc" jdbcType="LONGVARCHAR" property="itemDesc" />
+		<result column="item_desc" jdbcType="VARCHAR" property="itemDesc" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		item_desc,field,status,cur_price,pre_price,item_name,Item_type_id,item_id

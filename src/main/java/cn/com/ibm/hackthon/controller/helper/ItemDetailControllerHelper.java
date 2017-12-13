@@ -37,6 +37,7 @@ public class ItemDetailControllerHelper {
         if(itemlist!=null){
             Item Item=(Item)itemlist.get(0);
             System.out.println("=================="+itemlist);
+            System.out.println("Item DESC="+ Item.getItemDesc());
 
             List<Picture> pictureList=pictureService.getPictureList(1);
             //取出附图
