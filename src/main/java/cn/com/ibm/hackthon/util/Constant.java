@@ -21,7 +21,7 @@ public interface Constant {
 	public static final String PAGE_USER_REGISTER="user-register";
 	public static final String PICTURE_STROE_ADDREES="C://yu/";
 	//图片读取虚拟地址 需要相应的配置tomcat
-	public static final String PICTURE_VIRTUAL_ADRESS="http://9.110.24.109:8080/picture/";
+	public static final String PICTURE_VIRTUAL_ADRESS="http://9.110.24.109:8081/picture/";
 	
 	public static final String SYMBOL_COMMA = ",";
 	public static final String SYMBOL_LEFT_BRACKET="[";
