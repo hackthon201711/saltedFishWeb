@@ -137,11 +137,11 @@
 	<!-- 获取新到商品list -->
 	<select id="selectItemList" parameterType="cn.com.ibm.hackthon.po.ItemExample"
 		resultMap="ItemAndPicMap">
-		select
-		a.item_id, a.user_id, a.Item_type_id, a.item_name,item_desc, a.pre_price,
-		a.cur_price,
-		a.status, a.location_id, a.field,b.pic_path
-		from t_item a join t_picuture b on a.item_id=b.item_id
+		select a.*,b.pic_path
+		from t_item a left join t_picuture b on a.item_id=b.item_id
+		<where>
+		b.picuture_type=0
+		</where>
 		<if test="orderByClause != null">
 			order by a.${orderByClause} desc
 		</if>

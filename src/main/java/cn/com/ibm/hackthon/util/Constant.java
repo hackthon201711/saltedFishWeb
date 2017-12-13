@@ -32,4 +32,11 @@ public interface Constant {
 	public static final int INTEREST_ITEM_FOUND=0;
 	/**没有找到感兴趣商品*/
 	public static final int INTEREST_ITEM_NOT_FOUND=1;
+
+	/**添加感兴趣商品成功*/
+	public static final String ADD_INTEREST_SUCCESS = "0";
+	/**添加感兴趣商品失败*/
+	public static final String ADD_INTEREST_UN_SUCCESS = "1";
+	
+	public static final String USERID_IN_SESSION = "uId";
 }

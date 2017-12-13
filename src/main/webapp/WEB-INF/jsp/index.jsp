@@ -75,7 +75,9 @@
 	                  </div>
 	                  <h3><a href="${pageContext.request.contextPath}/itemD/ItemDetail?itemid=${item.id}">${item.itemName }</a></h3>
 	                  <div class="pi-price">￥${item.currentPrice }</div>
-	                  <a href="javascript:;" class="btn btn-default add2cart">Like</a>
+	                  <a href="javascript:;" class="btn btn-default add2cart">
+	                  Like<input type="hidden" value="${item.id }"/>
+	                  </a>
 	 
 	                </div>
 	              </div>
@@ -181,4 +183,22 @@
  
 </body>
 <!-- END BODY -->
+<script type="text/javascript">
+$(document).ready(function(){
+	  $("#a,.btn.btn-default.add2cart").click(function(){
+	  	var itemId = $(this).children("input")[0].value;
+	  	var htmlobj=$.ajax(
+	  			{
+	  				url:"interest",
+	  				type:"GET",
+	  				dataType: "json",
+	  				data:{"itemId":itemId},
+ 				async:false
+				});
+	  	alert("response text:"+htmlobj.responseText);
+	  	}
+	  	);
+	}
+	);
+</script>
 </html>

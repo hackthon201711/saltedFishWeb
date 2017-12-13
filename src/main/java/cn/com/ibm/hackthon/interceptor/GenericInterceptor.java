@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.com.ibm.hackthon.util.Constant;
+
 /**
  * 拦截器
  * @author lizhiwei
@@ -23,15 +25,20 @@ public class GenericInterceptor implements HandlerInterceptor {
 	}
 
 	@Override
-	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
+	public void postHandle(HttpServletRequest request, HttpServletResponse respo, Object arg2, ModelAndView mav)
 			throws Exception {
 		logger.info("postHandle...");
-		
+
 	}
 
 	@Override
-	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse resp, Object arg2) throws Exception {
 		logger.info("preHandle...");
+		if(request.getSession().getAttribute(Constant.USERID_IN_SESSION)==null) {
+			logger.info("user need to login...");
+			logger.info(request.getContextPath());
+			resp.sendRedirect(request.getContextPath()+"/FWlogin");
+		}
 		return true;
 	}
 

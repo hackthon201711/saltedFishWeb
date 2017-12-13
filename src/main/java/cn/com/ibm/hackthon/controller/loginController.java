@@ -20,6 +20,7 @@ import cn.com.ibm.hackthon.controller.helper.RegisterControllerHelper;
 import cn.com.ibm.hackthon.controller.helper.loginControllerHelper;
 import cn.com.ibm.hackthon.dao.UserMapper;
 import cn.com.ibm.hackthon.po.User;
+import cn.com.ibm.hackthon.util.Constant;
 
 
 
@@ -33,14 +34,15 @@ public class loginController {
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String login(String userID,String passWord, Model model,HttpSession httpSession) {
-
-		if(!loginHelper.checkAuth(userID,passWord)) {
+		User user = loginHelper.checkAuth(userID,passWord);
+		if(user==null) {
 			System.out.println("password incorrect!");
 		}
 		
 		System.out.println("login success!");
 
-		httpSession.setAttribute("userID", userID);
+		httpSession.setAttribute("userID", user.getLoginname());
+		httpSession.setAttribute(Constant.USERID_IN_SESSION, user.getUserid());
 		System.out.println("login success="+ httpSession.getAttribute("userID"));
 		
 		return "redirect:/page_index";

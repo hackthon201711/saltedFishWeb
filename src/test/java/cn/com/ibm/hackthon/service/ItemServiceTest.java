@@ -40,7 +40,7 @@ public class ItemServiceTest {
 	
 	@Test
 	public void testGetRecommendItemList() throws SQLException {
-		itemService.getRecommendItemList("2");
+		itemService.getRecommendItemList("8");
 //		List<ItemDTO> list = itemService.getRecommendItemList("2");
 //		for (ItemDTO itemDTO : list) {
 //			System.out.println(itemDTO);

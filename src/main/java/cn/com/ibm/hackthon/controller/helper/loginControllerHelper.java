@@ -16,15 +16,15 @@ public class loginControllerHelper {
 	@Resource 
 	private UserService userService;
 
-	public boolean checkAuth(String userID,String passWord) {
+	public User checkAuth(String userID,String passWord) {
 		
-		User user = userService.selectUserByName(userID);
-		if(!user.getPwd().equals(passWord)) {
-
-			return false;
-		}
-		
-		return true;
+		return userService.selectUserByName(userID);
+//		if(!user.getPwd().equals(passWord)) {
+//
+//			return false;
+//		}
+//		
+//		return true;
 		
 	}
 }
