@@ -24,7 +24,7 @@ public class InterestServiceImpl implements InterestService{
 	private InterestMapper inMapper;
 	@Override
 	public int interestItem(Interest interest) throws SQLException{
-		List<InterestDTO> list = inMapper.selectInteretByUserIdAndItemId(Integer.toString(interest.getItemId()),Integer.toString(interest.getItemId()));
+		List<InterestDTO> list = inMapper.selectInteretByUserIdAndItemId(Integer.toString(interest.getUserid()),Integer.toString(interest.getItemId()));
 		//if interest item found
 		if(list!=null && list.size()>0) {
 			return Constant.INTEREST_ITEM_FOUND;

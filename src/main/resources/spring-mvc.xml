@@ -47,6 +47,8 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/file/addnewItem"/>
+			<mvc:mapping path="/myinterest"/>
+			
 			<bean class="cn.com.ibm.hackthon.interceptor.GenericInterceptor">
 			</bean>
 		</mvc:interceptor>

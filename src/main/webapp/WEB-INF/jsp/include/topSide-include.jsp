@@ -36,6 +36,8 @@
                     <ul class="list-unstyled list-inline pull-right">
                       <c:if test="${sessionScope.userID!=null }">      
                         <li><a href="${pageContext.request.contextPath}/file/publicItem">我要发布</a></li>
+                        
+                        <li><a href="${pageContext.request.contextPath}/myinterest">我要关注的商品</a></li>
                         <li><a href="${pageContext.request.contextPath}/myitem">已发布的商品</a></li>
                         <li>${sessionScope.userID}</li>
                         <li><a href="${pageContext.request.contextPath}/logoff">退出登录</a></li>
