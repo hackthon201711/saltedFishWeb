@@ -26,4 +26,10 @@ public interface Constant {
 	public static final String SYMBOL_COMMA = ",";
 	public static final String SYMBOL_LEFT_BRACKET="[";
 	public static final String SYMBOL_RIGHT_BRACKET="]";
+	
+	
+	/**找到感兴趣商品*/
+	public static final int INTEREST_ITEM_FOUND=0;
+	/**没有找到感兴趣商品*/
+	public static final int INTEREST_ITEM_NOT_FOUND=1;
 }

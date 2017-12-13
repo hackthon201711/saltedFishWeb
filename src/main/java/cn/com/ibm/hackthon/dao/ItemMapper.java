@@ -25,7 +25,7 @@ public interface ItemMapper {
      * 获得感兴趣商品列表
      * @return
      */
-    List<ItemDTO> selectInterestedItem();
+    List<ItemDTO> selectInterestedItemByUserId(String UserId);
     /**
      * 根据商品id集合获得推荐商品列表
      * @param userName

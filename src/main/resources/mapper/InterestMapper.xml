@@ -12,7 +12,7 @@
   	select * from fish.t_interest
   	<where>
   		<if test="0!=null">
-  			and user_id=#{0}
+  			and userid=#{0}
   		</if>
   		<if test="1!=null">
   			and item_id=#{0}
@@ -37,12 +37,6 @@
       <if test="createTime != null">
         create_time,
       </if>
-      <if test="field1 != null">
-        field1,
-      </if>
-      <if test="field2 != null">
-        field2,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="itemId != null">
@@ -53,12 +47,6 @@
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="field1 != null">
-        #{field1,jdbcType=VARCHAR},
-      </if>
-      <if test="field2 != null">
-        #{field2,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

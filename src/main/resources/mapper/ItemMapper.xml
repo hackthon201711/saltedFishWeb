@@ -173,11 +173,11 @@
 		</where>
 	</select>
 	
-	<select id="selectInterestedItem" resultMap="ItemAndPicMap">
-		select b.* from fish.t_interest a join fish.t_item b on a.item_id=b.item_id join fish.t_picuture c on b.item_id=c.item_id
+	<select id="selectInterestedItemByUserId" resultMap="ItemAndPicMap">
+		select b.*,c.pic_path from fish.t_interest a join fish.t_item b on a.item_id=b.item_id join fish.t_picuture c on b.item_id=c.item_id
 		<where>
 			<if test="0!=null">
-				And i.item_id in (#{0})
+				And a.userid=#{0}
 			</if>
 		</where>
 	</select>
