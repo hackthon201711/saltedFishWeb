@@ -2,17 +2,13 @@ package cn.com.ibm.hackthon.controller;
 
 
 import cn.com.ibm.hackthon.controller.helper.ItemAddControllerHelper;
-import cn.com.ibm.hackthon.controller.helper.loginControllerHelper;
 import cn.com.ibm.hackthon.po.Item;
-import cn.com.ibm.hackthon.po.Location;
 import cn.com.ibm.hackthon.po.Picture;
 import cn.com.ibm.hackthon.po.User;
-import cn.com.ibm.hackthon.service.LocationService;
 import cn.com.ibm.hackthon.service.UserService;
 import cn.com.ibm.hackthon.util.Constant;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +19,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.awt.peer.SystemTrayPeer;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
