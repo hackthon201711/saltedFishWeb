@@ -174,7 +174,7 @@
 		                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
 		                    </div>
 		                  </div>
-		                  <h3><a href="shop-item.html">${it.itemName }</a></h3>
+		                  <h3><a href="${pageContext.request.contextPath}/itemD/ItemDetail?itemid=${it.id}">${it.itemName }</a></h3>
 		                  <div class="pi-price">￥${it.currentPrice }</div>
 		                  <c:if test="${sessionScope.uId }!=null">
 			                  <a href="javascript:;" class="btn btn-default add2cart">

@@ -62,6 +62,7 @@ public class InterestController implements Constant{
 		String userId = session.getAttribute(USERID_IN_SESSION).toString();
 		List<ItemDTO> list = helper.selectInterestItemList(userId);
 		model.addAttribute("itemList",list);
+		model.addAttribute("abstractPath", Constant.PICTURE_VIRTUAL_ADRESS);
 		return "shop-myInterestItem";
 	}
 }

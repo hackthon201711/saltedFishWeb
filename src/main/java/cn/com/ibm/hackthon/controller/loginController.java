@@ -37,6 +37,8 @@ public class loginController {
 		User user = loginHelper.checkAuth(userID,passWord);
 		if(user==null) {
 			System.out.println("password incorrect!");
+			model.addAttribute("errMsg", "Invalidate username or password");
+			return "login";
 		}
 		
 		System.out.println("login success!");

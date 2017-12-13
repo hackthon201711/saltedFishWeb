@@ -26,6 +26,9 @@
             <h1>用户登录</h1>
             <div class="content-form-page">
               <form role="form" class="form-horizontal form-without-legend" action="login" method="post">
+              <div style="color:red">
+              	${errMsg }
+              </div>
                 <div class="form-group">
                   <label class="col-lg-2 control-label" for="ID">账户名 <span class="require">*</span></label>
                   <div class="col-lg-8">
