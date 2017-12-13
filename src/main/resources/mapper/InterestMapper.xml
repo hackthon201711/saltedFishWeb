@@ -15,7 +15,7 @@
   			and userid=#{0}
   		</if>
   		<if test="1!=null">
-  			and item_id=#{0}
+  			and item_id=#{1}
   		</if>
   	</where>
   </select>

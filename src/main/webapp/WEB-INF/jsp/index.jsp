@@ -75,9 +75,13 @@
 	                  </div>
 	                  <h3><a href="${pageContext.request.contextPath}/itemD/ItemDetail?itemid=${item.id}">${item.itemName }</a></h3>
 	                  <div class="pi-price">￥${item.currentPrice }</div>
-	                  <a href="javascript:;" class="btn btn-default add2cart">
-	                  Like<input type="hidden" value="${item.id }"/>
-	                  </a>
+	                  <c:if test="${sessionScope.uId!=null }">
+		                  <a href="javascript:;" class="btn btn-default add2cart">
+			                  Like
+			                  <input type="hidden" value="${item.id }"/>
+		                  </a>
+	                  </c:if>
+	                  
 	 
 	                </div>
 	              </div>
@@ -98,7 +102,12 @@
 	                  </div>
 	                  <h3><a href="${pageContext.request.contextPath}/itemD/ItemDetail?itemid=${item.id}">${item.itemName }</a></h3>
 	                  <div class="pi-price">￥${item.currentPrice }</div>
-	                  <a href="javascript:;" class="btn btn-default add2cart">Like</a>
+	                  <c:if test="${sessionScope.uId!=null }">
+		                  <a href="javascript:;" class="btn btn-default add2cart">
+			                  Like
+			                  <input type="hidden" value="${item.id }"/>
+		                  </a>
+	                  </c:if>
 	 
 	                </div>
 	              </div>
@@ -132,8 +141,12 @@
 	                  </div>
 	                  <h3><a href="${pageContext.request.contextPath}/itemD/ItemDetail?itemid=${it.id}">${it.itemName }</a></h3>
 	                  <div class="pi-price">￥${it.currentPrice }</div>
-	                  <a href="javascript:;" class="btn btn-default add2cart">Like</a>
-	
+	                  <c:if test="${sessionScope.uId!=null }">
+		                  <a href="javascript:;" class="btn btn-default add2cart">
+			                  Like
+			                  <input type="hidden" value="${it.id }"/>
+		                  </a>
+	                  </c:if>
 	                </div>
 	              </div>
 			  </c:forEach>
@@ -163,8 +176,12 @@
 		                  </div>
 		                  <h3><a href="shop-item.html">${it.itemName }</a></h3>
 		                  <div class="pi-price">￥${it.currentPrice }</div>
-		                  <a href="javascript:;" class="btn btn-default add2cart">Like</a>
-		
+		                  <c:if test="${sessionScope.uId }!=null">
+			                  <a href="javascript:;" class="btn btn-default add2cart">
+				                  Like
+				                  <input type="hidden" value="${it.id }"/>
+			                  </a>
+		                  </c:if>
 		                </div>
 		              </div>
 				  </c:forEach>
@@ -195,7 +212,16 @@ $(document).ready(function(){
 	  				data:{"itemId":itemId},
  				async:false
 				});
-	  	alert("response text:"+htmlobj.responseText);
+	  	var re =  htmlobj.responseText;
+	  	if(re=="0"){
+	  		alert('已加关注！');
+	  		
+	  	}else if(re=="1"){
+	  		alert('你已经关注过该商品！');
+	  	}else{
+	  		alert('可能出现异常！');
+	  	}
+	  		
 	  	}
 	  	);
 	}

@@ -29,5 +29,13 @@ public class InterestControllerHelper {
 		return inService.interestItem(interest);
 	}
 	
-//	public List<ItemDTO> selectInterestItemList()
+	/**
+	 * 选择我关注的商品
+	 * @param userId
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<ItemDTO> selectInterestItemList(String userId) throws SQLException{
+		return inService.listInteretItemByUserId(userId);
+	}
 }

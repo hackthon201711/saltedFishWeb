@@ -38,6 +38,7 @@ public class GenericInterceptor implements HandlerInterceptor {
 			logger.info("user need to login...");
 			logger.info(request.getContextPath());
 			resp.sendRedirect(request.getContextPath()+"/FWlogin");
+			return false;
 		}
 		return true;
 	}
