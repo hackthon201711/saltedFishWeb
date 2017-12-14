@@ -158,12 +158,13 @@
 		a.item_id=b.item_id where a.status=0 group by a.item_id order by
 		count(*) DESC limit 5) d
 		on c.item_id=d.item_id left join fish.t_picuture e on
-		c.item_id=e.item_id  
+		c.item_id=e.item_id where e.picuture_type=0
 	</select>
 	<!-- 获得推荐商品list -->
 	<select id="selectItemByItemIds" resultMap="ItemAndPicMap">
 		select i.*,p.pic_path from fish.t_item i left join fish.t_picuture p on i.item_id=p.item_id
 		<where >
+			p.picuture_type=0
 			<if test="0!=null">
 				And i.item_id in 
 				<foreach item="itemList" index="index" collection="list" open="(" separator="," close=")">  
@@ -176,6 +177,7 @@
 	<select id="selectInterestedItemByUserId" resultMap="ItemAndPicMap">
 		select b.*,c.pic_path from fish.t_interest a join fish.t_item b on a.item_id=b.item_id join fish.t_picuture c on b.item_id=c.item_id
 		<where>
+			c.picuture_type=0
 			<if test="0!=null">
 				And a.userid=#{0}
 			</if>

@@ -64,7 +64,10 @@
                   </div>
                   <div class="product-page-cart">
 
-                    <button class="btn btn-primary" type="submit">Like</button>
+                    <button class="btn btn-primary" type="submit">
+                    <input type="hidden" value="${itemdto.itemId }"/>
+                    Like
+                    </button>
                   </div>
                   <div class="review">
                     <!-- <input type="range" value="4" step="0.25" id="backing4"> -->
@@ -180,4 +183,32 @@
 <jsp:include page="include/footer-include.jsp"></jsp:include>   
 </body>
 <!-- END BODY -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+	  $("#button,.btn.btn-primary").click(function(){
+	  	var itemId = $(this).children("input")[0].value;
+	  	var htmlobj=$.ajax(
+	  			{
+	  				url:"/saltedFishWeb/interest",
+	  				type:"GET",
+	  				dataType: "json",
+	  				data:{"itemId":itemId},
+ 				async:false
+				});
+	  	var re =  htmlobj.responseText;
+	  	if(re=="0"){
+	  		alert('已加关注！');
+	  		
+	  	}else if(re=="1"){
+	  		alert('你已经关注过该商品！');
+	  	}else{
+	  		alert('可能出现异常！');
+	  	}
+	  		
+	  	}
+	  	);
+	}
+	);
+</script>
 </html>
