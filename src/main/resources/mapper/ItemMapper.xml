@@ -156,9 +156,9 @@
 		select c.*,e.pic_path from fish.t_item c join
 		(select b.item_id,count(*) from fish.t_item a join fish.t_interest b on
 		a.item_id=b.item_id where a.status=0 group by a.item_id order by
-		count(*) limit 5) d
+		count(*) DESC limit 5) d
 		on c.item_id=d.item_id left join fish.t_picuture e on
-		c.item_id=e.item_id
+		c.item_id=e.item_id  
 	</select>
 	<!-- 获得推荐商品list -->
 	<select id="selectItemByItemIds" resultMap="ItemAndPicMap">
