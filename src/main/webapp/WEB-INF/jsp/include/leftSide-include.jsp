@@ -18,18 +18,18 @@
             <div class="sidebar-products clearfix">
               <h2>Hot</h2>
               <div class="item">
-                <a href="shop-item.html"><img src="${pageContext.request.contextPath}/assets/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-                <h3><a href="shop-item.html">咸鱼外套</a></h3>
+                <a href="shop-item.html"><img src="${pageContext.request.contextPath}/assets/pages/img/products/MM1.png" alt="Some Shoes in Animal with Cut Out"></a>
+                <h3><a href="shop-item.html">外星鹦鹉（已学会各种奇葩的话）</a></h3>
                 <div class="price">¥31.00</div>
               </div>
               <div class="item">
-                <a href="shop-item.html"><img src="${pageContext.request.contextPath}/assets/pages/img/products/k4.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-                <h3><a href="shop-item.html">咸鱼短袖</a></h3>
+                <a href="shop-item.html"><img src="${pageContext.request.contextPath}/assets/pages/img/products/MM2.png" alt="Some Shoes in Animal with Cut Out"></a>
+                <h3><a href="shop-item.html">喵星人（送喵粮）</a></h3>
                 <div class="price">¥23.00</div>
               </div>
               <div class="item">
-                <a href="shop-item.html"><img src="${pageContext.request.contextPath}/assets/pages/img/products/k3.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-                <h3><a href="shop-item.html">咸鱼套装</a></h3>
+                <a href="shop-item.html"><img src="${pageContext.request.contextPath}/assets/pages/img/products/MM3.png" alt="Some Shoes in Animal with Cut Out"></a>
+                <h3><a href="shop-item.html">大狗坐骑（免费送狗鞍）</a></h3>
                 <div class="price">¥86.00</div>
               </div>
             </div>
